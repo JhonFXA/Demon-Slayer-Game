@@ -1,0 +1,58 @@
+@keyframes c-glowing-blue {
+    0% {
+        box-shadow: 0 0 5px rgb(201, 201, 255), 0 0 5px rgb(201, 201, 255), 0 0 15px rgb(201, 201, 255),  
+        0 0 20px rgb(0, 0, 255), 0 0 10px rgb(0, 0, 255), 0 0 10px rgb(0, 0, 255),
+        0 0 10px rgb(0, 0, 255), 0 0 10px rgb(0, 0, 255)
+    }
+
+    to {
+        box-shadow: 0 0 2.5px rgb(201, 201, 255), 0 0 2.5px rgb(201, 201, 255), 0 0 7.5px rgb(201, 201, 255),  
+        0 0 10px rgb(0, 0, 255), 0 0 5px rgb(0, 0, 255), 0 0 5px rgb(0, 0, 255),
+        0 0 5px rgb(0, 0, 255), 0 0 5px rgb(0, 0, 255)
+    }
+}
+
+
+@keyframes c-glowing-red {
+    0% {
+        box-shadow: 0 0 5px rgb(255, 201, 201), 0 0 5px rgb(255, 201, 201), 0 0 15px rgb(255, 201, 201),  
+        0 0 20px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0),
+        0 0 10px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0)
+    }
+
+    to {
+        box-shadow: 0 0 2.5px rgb(255, 201, 201), 0 0 2.5px rgb(255, 201, 201), 0 0 7.5px rgb(255, 201, 201),  
+        0 0 10px rgb(255, 0, 0), 0 0 5px rgb(255, 0, 0), 0 0 5px rgb(255, 0, 0),
+        0 0 5px rgb(255, 0, 0), 0 0 5px rgb(255, 0, 0)
+    }
+}
+
+
+
+@keyframes text-glowing-blue {
+    0% {
+        text-shadow: 0 0 5px rgb(201, 201, 255), 0 0 5px rgb(201, 201, 255), 0 0 15px rgb(201, 201, 255),  
+        0 0 20px rgb(0, 0, 255), 0 0 10px rgb(0, 0, 255), 0 0 10px rgb(0, 0, 255),
+        0 0 10px rgb(0, 0, 255), 0 0 10px rgb(0, 0, 255)
+    }
+
+    to {
+        text-shadow: 0 0 2.5px rgb(201, 201, 255), 0 0 2.5px rgb(201, 201, 255), 0 0 7.5px rgb(201, 201, 255),  
+        0 0 10px rgb(0, 0, 255), 0 0 5px rgb(0, 0, 255), 0 0 5px rgb(0, 0, 255),
+        0 0 5px rgb(0, 0, 255), 0 0 5px rgb(0, 0, 255)
+    }
+}
+
+@keyframes text-glowing-red {
+    0% {
+        text-shadow: 0 0 5px rgb(255, 201, 201), 0 0 5px rgb(255, 201, 201), 0 0 15px rgb(255, 201, 201),  
+        0 0 20px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0),
+        0 0 10px rgb(255, 0, 0), 0 0 10px rgb(255, 0, 0)
+    }
+
+    to {
+        text-shadow: 0 0 2.5px rgb(255, 201, 201), 0 0 2.5px rgb(255, 201, 201), 0 0 7.5px rgb(255, 201, 201),  
+        0 0 10px rgb(255, 0, 0), 0 0 5px rgb(255, 0, 0), 0 0 5px rgb(255, 0, 0),
+        0 0 5px rgb(255, 0, 0), 0 0 5px rgb(255, 0, 0)
+    }
+}
