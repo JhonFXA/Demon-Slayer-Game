@@ -21,7 +21,7 @@
 @media (max-width: 767px){
 
     body::before {
-        background-image: url('/src/imagens/Mobile-bg.jpg');
+        background-image: url('./src/imagens/Mobile-bg.jpg');
         background-size: cover;
         background-repeat: repeat;
     }
@@ -47,7 +47,7 @@
 
 @media (max-width: 500px){
     body::before {
-        background-image: url('/src/imagens/Mobile-bg.jpg');
+        background-image: url('./src/imagens/Mobile-bg.jpg');
         background-size: cover;
         background-repeat: repeat;
     }
