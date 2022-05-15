@@ -1,6 +1,6 @@
 @media (max-width: 1280px){
     header h1 {
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
     .character-select .character-list{
@@ -8,17 +8,26 @@
     }
 
     .character-select .character-list .character {
-        height: 100px;
-        width: 100px;
+        height: 50px;
+        width: 50px;
     }
 }
 
+@media (max-width: 850px) {
+    .versus {
+        height: 150px;
+    }
+}
 @media (max-width: 767px){
 
     body::before {
         background-image: url('/src/imagens/Mobile-bg.jpg');
         background-size: cover;
         background-repeat: repeat;
+    }
+
+    .versus {
+        height: 100px;
     }
 
     main{
@@ -32,11 +41,11 @@
     }
 
     .character-select .character-large img {
-        height: 300px;
+        height: 250px;
     }
 }
 
-@media (max-width: 360px){
+@media (max-width: 500px){
     body::before {
         background-image: url('/src/imagens/Mobile-bg.jpg');
         background-size: cover;
@@ -46,5 +55,9 @@
     header h1{
         font-size: 1.2rem;
         margin-bottom: 2rem;
+    }
+
+    .character-select .character-large img {
+        height: 200px;
     }
 }
