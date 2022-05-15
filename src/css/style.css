@@ -34,7 +34,7 @@ font-size: 3rem;
 .character-select {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .character-select .character-large {
@@ -46,10 +46,15 @@ font-size: 3rem;
 
 .character-select .character-large img{
     position: absolute;
-    height: 500px;
+    height: 400px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.versus {
+    position: absolute;
+    height: 300px;
 }
 
 
