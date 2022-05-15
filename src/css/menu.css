@@ -1,7 +1,7 @@
 
 body {
     font-family: 'demon', Courier, monospace;
-    background-image: url(/src/imagens/menu-background.png);
+    background-image: url(../imagens/menu-background.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-color: black;
