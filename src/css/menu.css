@@ -1,0 +1,42 @@
+
+body {
+    font-family: 'demon', Courier, monospace;
+    background-image: url(/src/imagens/menu-background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+}
+
+header img {
+    height: 300px;
+    display: block;
+    margin: auto;
+
+}
+
+.button {
+    text-decoration: none;
+    display: block;
+    background-color: rgb(15, 15, 15);
+    color: rgb(255, 255, 255);
+    height: 50px;
+    width: 100px;
+    text-align: center;
+    font-size: 30px;
+    border: solid rgb(255, 0, 0);
+    animation: c-glowing-red .5s ease-in-out infinite;
+    animation-direction: alternate;
+}
+
+.button:hover {
+    animation: c-glowing-red .5s ease-in-out infinite;
+    animation-direction: alternate;
+    transform: scale(1.09);
+    transition: 0.3s;
+}
+
+.container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}

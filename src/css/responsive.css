@@ -21,7 +21,7 @@
 @media (max-width: 767px){
 
     body::before {
-        background-image: url('../imagens/Mobile-bg.jpg');
+        background-image: url('/src/imagens/Mobile-bg.jpg');
         background-size: cover;
         background-repeat: repeat;
     }
@@ -46,10 +46,12 @@
 }
 
 @media (max-width: 500px){
+
+
     body::before {
-        background-image: url('../imagens/Mobile-bg.jpg');
+        background-image: url('/src/imagens/Mobile-bg.jpg');
         background-size: cover;
-        background-repeat: repeat;
+        background-repeat: no-repeat;
     }
 
     header h1{
@@ -57,7 +59,44 @@
         margin-bottom: 2rem;
     }
 
-    .character-select .character-large img {
+    .character-select .character-large img{
         height: 200px;
     }
+
+    .character-select .character-large.character-player-1 {
+        display: flex;
+        flex-direction: column;
+        align-items: space-around;
+        position: relative;
+        transform: translate(85%, -10%);
+        
+        height: 200px;
+    }
+
+    .character-list {
+        bottom: 5px;
+    }
+
+    .versus {
+        height: 70px;
+        top: 255px;
+    }
+
+    .character-select .character-large.character-player-2 {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        transform: translate(-82%, 130%);
+        
+        height: 200px;
+    
+    }
+
+
+    .character-select .character-large .name h2{
+        position: relative;
+       bottom: -10rem;
+        width: 100%;
+        font-size: 1.5rem;
+        }
 }

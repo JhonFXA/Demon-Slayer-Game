@@ -1,142 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demon Slayer Game</title>
-    <link rel="stylesheet" href="./src/css/variables.css">
-    <link rel="stylesheet" href="./src/css/reset.css">
-    <link rel="stylesheet" href="./src/css/fonts.css">
-    <link rel="stylesheet" href="./src/css/animations.css">
-    <link rel="stylesheet" href="./src/css/style.css">
-    <link rel="stylesheet" href="./src/css/responsive.css">
+  <link rel="stylesheet" href="./src/css/menu.css">
+  <link rel="stylesheet" href="./src/css/fonts.css">
+  <link rel="stylesheet" href="./src/css/reset.css">
+  <link rel="stylesheet" href="./src/css/animations.css">
 </head>
 <body>
-
-   
+    <header> 
+        <img src="./src/imagens/demonslayer-logo.png" alt="Demon Slayer Game">
+    </header>
 
     <main>
-         <header>
-        <h1>
-            CharacteR SelecT
-        </h1>
-    </header>
-        <div class="character-select">
-<!--====================================== PLAYER 1 ===============================================================-->
-            <div class="character-large character-player-1">
-                <img src="./src/imagens/tanjiro.png" alt="Character selected player 1" id="character-player-1">
-                <div class="name">
-                    <h2 id="character-name-1">Kamado Tanjiro</h2>
-                </div>
-            </div>
-<!--======================================= LIST ==============================================================-->
-            <ul class="character-list player-1">
-                <li class="character selected" id="tanjiro" data-name="Kamado Tanjiro">
-                    <span class="tag">1P</span>
-                    <img src="./src/imagens/Tanjiro-icon.jpg" alt="Kamado Tanjiro Character">
-                </li>
-
-                <li class="character" id="zenitsu" data-name="Agatsuma Zenitsu">
-                    <span class="tag">1P</span>
-                    <img src="./src/imagens/Zenitsu-icon.jpg" alt="Agatsuma Zenitsu Character">
-                </li>
-
-                <li class="character" id="inosuke" data-name="Hashibira Inosuke">
-                    <span class="tag">1P</span>
-                    <img src="./src/imagens/Inosuke-icon.jpg" alt="Hashibira Inosuke Character">
-                </li>
-
-                <li class="character" id="nezuko" data-name="Kamado Nezuko">
-                    <span class="tag">1P</span>
-                    <img src="./src/imagens/Nezuko-icon.jpg" alt="Kamado Nezuko Character">
-                </li>
-
-                <li class="character" id="tomioka" data-name="Giyuu Tomioka">
-                    <span class="tag">1P</span>
-                    <img src="./src/imagens/Tomioka-icon.jpg" alt="Giyuu Tomioka Character">
-                </li>
-
-                <li class="character" id="shinobu" data-name="Shinobu Kocho">
-                    <span class="tag">1P</span>
-                    <img src="./src/imagens/Shinobu-icon.jpg" alt="Shinobu Kocho Character">
-                </li>
-
-                <li class="character" id="kanao" data-name="Kanao Tsuyuri">
-                    <span class="tag">1P</span>
-                    <img src="./src/imagens/Kanao-icon.jpg" alt="Kanao Tsuyuri Character">
-                </li>
-
-                <li class="character" id="yoriichi" data-name="Yoriichi">
-                    <span class="tag">1P</span>
-                    <img src="./src/imagens/Yoriichi-icon.jpg" alt="Yoriichi Character">
-                </li>
-
-                <li class="character" id="kokushibo" data-name="Kokushibo">
-                    <span class="tag">1P</span>
-                    <img src="./src/imagens/Kokushibo-icon.jpg" alt="Kokushibo Character">
-                </li>
+        <div class="container">
+            <ul>
+                <li><a class="button" href="/character-select.html">Play</a></li>
             </ul>
-
-            <img class="versus" src="https://www.freepnglogos.com/uploads/vs-png/vintage-vs-with-black-lines-png-transparent-Images-12.png" alt="Versus">
-            
-            <ul class="character-list player-2">
-                <li class="character" id="tanjiro" data-name="Kamado Tanjiro">
-                    <span class="tag">2P</span>
-                    <img src="./src/imagens/Tanjiro-icon.jpg" alt="Kamado Tanjiro Character">
-                </li>
-
-                <li class="character" id="zenitsu" data-name="Agatsuma Zenitsu">
-                    <span class="tag">2P</span>
-                    <img src="./src/imagens/Zenitsu-icon.jpg" alt="Agatsuma Zenitsu Character">
-                </li>
-
-                <li class="character" id="inosuke" data-name="Hashibira Inosuke">
-                    <span class="tag">2P</span>
-                    <img src="./src/imagens/Inosuke-icon.jpg" alt="Hashibira Inosuke Character">
-                </li>
-
-                <li class="character" id="nezuko" data-name="Kamado Nezuko">
-                    <span class="tag">2P</span>
-                    <img src="./src/imagens/Nezuko-icon.jpg" alt="Kamado Nezuko Character">
-                </li>
-
-                <li class="character" id="tomioka" data-name="Giyuu Tomioka">
-                    <span class="tag">2P</span>
-                    <img src="./src/imagens/Tomioka-icon.jpg" alt="Giyuu Tomioka Character">
-                </li>
-
-                <li class="character" id="shinobu" data-name="Shinobu Kocho">
-                    <span class="tag">2P</span>
-                    <img src="./src/imagens/Shinobu-icon.jpg" alt="Shinobu Kocho Character">
-                </li>
-
-                <li class="character" id="kanao" data-name="Kanao Tsuyuri">
-                    <span class="tag">2P</span>
-                    <img src="./src/imagens/Kanao-icon.jpg" alt="Kanao Tsuyuri Character">
-                </li>
-
-                <li class="character" id="yoriichi" data-name="Yoriichi">
-                    <span class="tag">2P</span>
-                    <img src="./src/imagens/Yoriichi-icon.jpg" alt="Yoriichi Character">
-                </li>
-
-                <li class="character player-2-selected" id="kokushibo" data-name="Kokushibo">
-                    <span class="tag">2P</span>
-                    <img src="./src/imagens/Kokushibo-icon.jpg" alt="Kokushibo Character">
-                </li>
-            </ul>
-<!--====================================== PLAYER 2 ===============================================================-->
-            <div class="character-large character-player-2">
-                <img src="./src/imagens/kokushibo.png" alt="Character selected player 2" id="character-player-2">
-                <div class="name">
-                    <h2 id="character-name-2">Kokushibo</h2>
-                </div>
-            </div>
-<!--=====================================================================================================-->
-            </div>
+        </div>
     </main>
-
-    <script src="./src/js/index.js"></script>
+    
 </body>
 </html>
