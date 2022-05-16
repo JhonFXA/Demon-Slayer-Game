@@ -40,3 +40,37 @@ header img {
     display: flex;
     justify-content: center;
 }
+
+.links{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.links img{
+    height: 30px;
+    position: relative;
+    top: 10px;
+}
+
+.links a {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: none;
+}
+
+.cute-slayers :nth-child(1) {
+    height: 100px;
+}
+
+.cute-slayers img{
+    height: 100px;
+}
+
+.cute-slayers {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 120px;
+}
