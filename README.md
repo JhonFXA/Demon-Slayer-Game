@@ -14,7 +14,8 @@
 ### Sobre:
 Esse é um projeto que desenvolvi durante o **#MAPADEV WEEK** do <a href="https://youtube.com/Dev em Dobro" target="_blank">**Dev em Dobro**</a>. O evento consistia em desenvolver um projeto de menu de seleção de personagens junto com os participantes, totalmente do zero.
 <br>
-Eu decidi escolher o tema do anime *Demon Slayer* e adicionar outras coisinhas :)
+Eu decidi escolher o tema do anime *Demon Slayer* e adicionar outras coisinhas :)<br>
+<a href="https://jhonfxa.github.io/DemonSlayer-Game-Menu/index.html" target="_blank">Clique aqui para testar o site</a>
 
 ### 🛠 Tecnologias
 
