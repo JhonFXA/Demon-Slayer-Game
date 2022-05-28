@@ -103,6 +103,7 @@
 
     .character-select .character-large img{
         height: 200px;
+        
     }
 
     .character-select .character-large.character-player-1 {
@@ -111,6 +112,7 @@
         align-items: space-around;
         position: relative;
         transform: translate(85%, -10%);
+        animation: fadeinMobile 1s;
         
         height: 200px;
     }
@@ -129,6 +131,7 @@
         flex-direction: column;
         position: relative;
         transform: translate(-82%, 130%);
+        animation: fadein 1s;
         
         height: 200px;
     

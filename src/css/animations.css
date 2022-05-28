@@ -1,3 +1,5 @@
+/*======================================= ICON ANIMATION ============================================*/
+
 @keyframes c-glowing-blue {
     0% {
         box-shadow: 0 0 5px rgb(201, 201, 255), 0 0 5px rgb(201, 201, 255), 0 0 15px rgb(201, 201, 255),  
@@ -55,4 +57,56 @@
         0 0 10px rgb(255, 0, 0), 0 0 5px rgb(255, 0, 0), 0 0 5px rgb(255, 0, 0),
         0 0 5px rgb(255, 0, 0), 0 0 5px rgb(255, 0, 0)
     }
+}
+
+/*======================================== IMAGE ANIMATION ==============================================*/
+
+
+@keyframes float {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    50% {
+        transform: translate(-50%, -53%);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes fadein {
+    from { opacity: 0;}
+    to   { opacity: 1;}
+}
+
+/*======== PLAYER 1 ==========*/
+@keyframes fadeinMove {
+    from { opacity: 0; transform: translateX(-10%)  }
+    to   { opacity: 1; transform: translateX(0%)}
+}
+
+
+/*======== PLAYER 2 ==========*/
+@keyframes fadeinMove2 {
+    from { opacity: 0; transform: translateX(10%)  }
+    to   { opacity: 1; transform: translateX(0%)}
+}
+
+
+/*======== VERSUS ==========*/
+@keyframes scale {
+    0% {
+        transform: scale(100%);
+    }
+    50% {
+        transform:scale(105%);
+    }
+    100% {
+        transform: scale(100%);
+    }
+}
+
+@keyframes scaleFadein {
+    from { opacity: 0;}
+    to   { opacity: 1;}
 }
