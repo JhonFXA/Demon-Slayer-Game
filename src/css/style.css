@@ -3,15 +3,15 @@ body {
     background: var(--secondary-color);
 }
 
-body::before{
-content: '';
-background-image: url("../imagens/Background.gif");
-background-repeat: no-repeat;
-background-size: cover;
-position: absolute; 
-width: 100%;
-height: 100%;
-z-index: -1;
+body::before {
+    content: '';
+    background-image: url("../imagens/Background.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 main {
@@ -21,7 +21,7 @@ main {
     justify-content: center;
 }
 
-.button {   
+.button {
     position: absolute;
     top: 0;
     left: 0;
@@ -44,18 +44,18 @@ main {
     transition: 0.3s;
 }
 
-header{
-display: flex;
-justify-content: center;
+header {
+    display: flex;
+    justify-content: center;
 }
 
 
 
 
-header h1{
-color: var(--title-color);
-font-size: 3rem;
-text-shadow: 5px 0 5px black;
+header h1 {
+    color: var(--title-color);
+    font-size: 3rem;
+    text-shadow: 5px 0 5px black;
 }
 
 .character-select {
@@ -69,7 +69,7 @@ text-shadow: 5px 0 5px black;
     width: 30%;
     height: 70vh;
     position: relative;
-   
+
 }
 
 .character-large.character-player-1 {
@@ -79,7 +79,8 @@ text-shadow: 5px 0 5px black;
 .character-large.character-player-2 {
     animation: fadeinMove2 1s;
 }
-.character-select .character-large img{
+
+.character-select .character-large img {
     position: absolute;
     height: 400px;
     left: 50%;
@@ -91,34 +92,39 @@ section {
     position: absolute;
     left: 30%;
     top: 30%;
-    animation: fadein 2s ease ;
+    animation: fadein 2s ease;
 }
+
 .versus {
     position: absolute;
     height: 300px;
     animation: scale 2s ease-in-out infinite;
-    
+    z-index: 1;
 }
 
 
-.character-select .character-large .name h2{
-color: var(--title-color);
-position: absolute;
-bottom: -2rem;
-width: 100%;
-font-size: 2rem;
-text-shadow: 5px 0 5px black;
+.character-select .character-large .name h2 {
+    color: var(--title-color);
+    position: absolute;
+    bottom: -2rem;
+    width: 100%;
+    font-size: 2rem;
+    text-shadow: 5px 0 5px black;
 }
 
-.character-select .character-list.player-1 {
+.character-select .character-list {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 300px;
+    height: 500px;
     justify-content: start;
     align-items: start;
     gap: 12px;
     position: absolute;
+}
+
+.character-select .character-list.player-1 {
     left: 20px;
 }
 
@@ -135,14 +141,6 @@ text-shadow: 5px 0 5px black;
 }
 
 .character-select .character-list.player-2 {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    max-width: 300px;
-    justify-content: start;
-    align-items: start;
-    gap: 12px;
-    position: absolute;
     right: 20px;
 }
 
@@ -158,33 +156,29 @@ text-shadow: 5px 0 5px black;
     transition: 0.15s ease-in-out;
 }
 
-
-
-
-
-.character-select .character-list .character img{
+.character-select .character-list .character img {
     width: 100%;
     height: 100%;
     border-radius: 5px;
     filter: saturate(0%);
 }
 
-.character-select .character-list .character img:hover{
+.character-select .character-list .character img:hover {
     filter: saturate(100%);
     transition: 0.3s;
 }
 
-.character-select .character-list .character.selected img{
+.character-select .character-list .character.player-1-selected img {
     filter: saturate(100%);
 }
 
-.character-select .character-list .character.selected {
+.player-1-selected {
     border: 2px solid rgb(204, 203, 255);
     animation: c-glowing-blue .5s ease-in-out infinite;
     animation-direction: alternate;
 }
 
-.player-1 .character:hover{
+.player-1 .character:hover {
     transform: scale(1.07);
     animation: c-glowing-blue .5s ease-in-out infinite;
     animation-direction: alternate;
@@ -197,7 +191,7 @@ text-shadow: 5px 0 5px black;
     animation-direction: alternate;
 }
 
-.character-select .character-list.player-2-selected .character :hover{
+.character-select .character-list.player-2-selected .character :hover {
     transform: scale(1.07);
     animation: c-glowing-red .5s ease-in-out infinite;
     animation-direction: alternate;
@@ -210,45 +204,13 @@ text-shadow: 5px 0 5px black;
     animation-direction: alternate;
 }
 
-.player-2 .character:hover{
+.player-2 .character:hover {
     transform: scale(1.07);
     animation: c-glowing-red .5s ease-in-out infinite;
     animation-direction: alternate;
     z-index: 3;
 }
 
-.character-select .character-list .player-2-selected img{
+.character-select .character-list .player-2-selected img {
     filter: saturate(100%);
-}
-
-.character-select .character-list .character .tag{
-    display: none;
-    font-family: 'Times New Roman', Times, serif;
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    z-index: 4;
-    color: rgb(255, 255, 255);
-    transition: opacity .3 ease-in-out;
-    animation: alternate;
-    animation: text-glowing-blue .3s ease-in-out infinite;
-    animation-direction: alternate;
-}
-
-.character-select .character-list .character.selected .tag{
-    display: block;
-}
-
-.character-select .character-list .player-2-selected .tag{
-    display: block;
-    font-family: 'Times New Roman', Times, serif;
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    z-index: 4;
-    color: rgb(255, 255, 255);
-    transition: opacity .3 ease-in-out;
-    animation: alternate;
-    animation: text-glowing-red .3s ease-in-out infinite;
-    animation-direction: alternate;
 }
