@@ -28,6 +28,7 @@ class Sprite {
         }
         this.color = color
         this.isAttacking
+        this.health = 100
     }
 
     draw() {
@@ -162,8 +163,10 @@ function animate() {
         }) && 
         player1.isAttacking
         ) {
-            player1.isAttacking = false 
+            player1.isAttacking = false
             player2.color = 'yellow'
+            player2.health -= 4 
+            document.querySelector('#player2Health').style.width = player2.health + '%'
     } else {
         player2.color = 'blue'
     }
@@ -176,6 +179,8 @@ function animate() {
         ) {
             player2.isAttacking = false 
             player1.color = 'yellow'
+            player1.health -= 4 
+            document.querySelector('#player1Health').style.width = player1.health + '%'
     } else {
         player1.color = 'red'
     }
