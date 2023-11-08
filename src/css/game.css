@@ -1,0 +1,87 @@
+body {
+    overflow: hidden;
+}
+
+.game-display {
+    display: inline-block;
+    position: relative;
+}
+
+.players-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: absolute;
+    height: 80px;
+    width: 100%;
+}
+
+
+.character1-icon, .character2-icon {
+    height: 60px;
+    border-radius: 50px;
+    border: groove goldenrod;
+}
+
+.character1-name, .character2-name {
+    color: white;
+    font-weight: bolder;
+    text-shadow: 2px 2px 0 #000;
+    font-family: 'demon';
+    letter-spacing: 3px;
+}
+
+.character2-name {
+    text-align: right;
+}
+
+.player1-health, .player2-health {
+    position: relative;
+    background-color: grey;
+    border: groove brown 2px;
+    width: 450px;
+    height: 30px;
+}
+
+.health-quantity-P1, .health-quantity-P2 {
+    position: absolute;
+    background-image: linear-gradient(-90deg, yellowgreen, yellow);
+    height: 100%;
+    width: 100%;
+}
+
+.health-quantity-P2 {
+    background-image: linear-gradient(90deg, yellowgreen, yellow);
+}
+
+.lose-health-P1, .lose-health-P2 {
+    background-color: red;
+    width: 100%;
+    height: 100%;
+    transition: 1s ease;
+}
+
+.player1-health {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.player1-stamina, .player2-stamina {
+    background-color: cyan;
+    border: solid goldenrod 2px;
+    height: 15px;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    color: gold;
+    text-shadow: 3px 3px 0 #000;
+    font-weight: bolder;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
