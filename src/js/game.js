@@ -209,7 +209,6 @@ function animate() {
 animate()
 
 window.addEventListener('keydown', (event) =>{
-    console.log(event.key)
     //Player 1 keys
     switch (event.key) {
         case 'd':
