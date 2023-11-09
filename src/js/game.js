@@ -13,7 +13,7 @@ const background = new SpriteScenery({
         x: 0,
         y: 0
     },
-    imageSrc: '/src/imagens/game-assets/scenery1.jpg'
+    imageSrc: '../src/imagens/game-assets/scenery1.jpg'
 }, window.innerWidth, window.innerHeight)
 
 
@@ -28,7 +28,7 @@ const player1 = new Character({
         x: 0,
         y: 0
     },
-    imageSrc: '/src/imagens/game-assets/tanjiro/tanjiro-idle.png',
+    imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
     scale: 2,
     offset: {
         x: 215,
@@ -36,37 +36,37 @@ const player1 = new Character({
     },
     sprites: {
         idle: {
-            imageSrc: '/src/imagens/game-assets/tanjiro/tanjiro-idle.png',
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
             framesMax: 8,
             framesHold: 10
         },
         idleInverted: {
-            imageSrc: '/src/imagens/game-assets/tanjiro/tanjiro-idle-inverted.png',
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle-inverted.png',
             framesMax: 8,
             framesHold: 10
         },
         run: {
-            imageSrc: '/src/imagens/game-assets/tanjiro/tanjiro-run.png',
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run.png',
             framesMax: 8,
             framesHold: 10
         },
         runInverted: {
-            imageSrc: '/src/imagens/game-assets/tanjiro/tanjiro-run-inverted.png',
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run-inverted.png',
             framesMax: 8,
             framesHold: 10
         },
         jump: {
-            imageSrc: '/src/imagens/game-assets/tanjiro/tanjiro-jump.png',
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump.png',
             framesMax: 2,
             framesHold: 10
         },
         jumpInverted: {
-            imageSrc: '/src/imagens/game-assets/tanjiro/tanjiro-jump-inverted.png',
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump-inverted.png',
             framesMax: 2,
             framesHold: 10
         },
         attack: {
-            imageSrc: '/src/imagens/game-assets/tanjiro/tanjiro-attack.png',
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-attack.png',
             framesMax: 5,
             framesHold: 5
         }
@@ -209,7 +209,6 @@ function animate() {
 animate()
 
 window.addEventListener('keydown', (event) =>{
-    console.log(event.key)
     //Player 1 keys
     switch (event.key) {
         case 'd':
