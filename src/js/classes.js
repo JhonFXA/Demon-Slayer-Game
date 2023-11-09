@@ -47,11 +47,11 @@ class Sprite {
 
         // context.fillStyle = this.color
         // context.fillRect(this.position.x, this.position.y, this.width, this.height)
-        // // Attack box
-        // if(this.isAttacking){
-        //     context.fillStyle = 'green'
-        //     context.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
-        // }
+        // // // Attack box
+        // // // if(this.isAttacking){
+            // context.fillStyle = 'green'
+            // context.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+        // // // }
     }
 
     animateFrames(){
@@ -82,7 +82,9 @@ class Character extends Sprite {
         framesMax = 1,
         offset = { x:0, y:0 },
         sprites,
-        direction
+        attackBox = { offset: {}, width: undefined, height: undefined},
+        direction,
+        canAttack = 'true'
     }){
         super({
             position,
@@ -93,7 +95,7 @@ class Character extends Sprite {
         })
         this.velocity = velocity
         this.width = 50
-        this.height = 150
+        this.height = 100
         this.lastKey
         this.movSpeed = 8
         this.jumps = 2
@@ -102,9 +104,9 @@ class Character extends Sprite {
                 x: this.position.x,
                 y: this.position.y
             },
-            offset,
-            width: 100,
-            height: 50
+            offset: attackBox.offset,
+            width: attackBox.width,
+            height: attackBox.height
         }
         this.color = color
         this.isAttacking
@@ -114,6 +116,7 @@ class Character extends Sprite {
         this.framesHold = 10
         this.sprites = sprites
         this.direction = direction
+        this.canAttack = canAttack
 
 
         for (const sprite in this.sprites){
@@ -127,13 +130,13 @@ class Character extends Sprite {
         this.draw()
         this.animateFrames()
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x
-        this.attackBox.position.y = this.position.y
+        this.attackBox.position.y = this.position.y + this.attackBox.offset.y
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
 
         //Collision with ground
-        if (this.position.y + this.height + this.velocity.y >= canvas.height - 70) {
+        if (isOnGround(this)) {
             this.velocity.y = 0
             this.jumps = 2
         } else {
@@ -146,19 +149,35 @@ class Character extends Sprite {
         } else if (this.position.x + this.width >= canvas.width - 40){
             this.position.x = canvas.width - this.width - 40
         }
+
     }
 
     attack() {
-        this.switchSprite('attack')
+        if (this.direction === -1){
+            this.switchSprite('attack-inverted')
+            this.position.x = this.position.x - 150
+        } else{
+            this.switchSprite('attack')
+        }
+
         this.isAttacking = true
+
         setTimeout(() => {
             this.isAttacking = false
         }, 100);
+
+        this.canAttack = 'false'
+
+        setTimeout(()=>{
+            this.canAttack = 'true'
+        },700)
     }
 
     switchSprite(sprite) {
 
-        if (this.image === this.sprites.attack.image && this.framesCurrent < this.sprites.attack.framesMax - 1) return
+        if (this.image === this.sprites.attack.image && this.framesCurrent < this.sprites.attack.framesMax - 1 || this.image === this.sprites.attackInverted.image && this.framesCurrent < this.sprites.attackInverted.framesMax - 1) {
+            return
+        }
 
         switch(sprite) {
             case 'idle':
@@ -171,6 +190,9 @@ class Character extends Sprite {
                 break;
             case 'idle-inverted':
                 if(this.image !== this.sprites.idleInverted.image){
+                    if(this.image === this.sprites.attackInverted.image){
+                        this.position.x += 150
+                    }
                     this.image = this.sprites.idleInverted.image
                     this.framesMax = this.sprites.idleInverted.framesMax
                     this.framesCurrent = 0
@@ -187,6 +209,9 @@ class Character extends Sprite {
                 break;
             case 'run-inverted':
                 if(this.image !== this.sprites.runInverted.image){
+                    if(this.image === this.sprites.attackInverted.image){
+                        this.position.x += 150
+                    }
                     this.image = this.sprites.runInverted.image
                     this.framesMax = this.sprites.runInverted.framesMax
                     this.framesCurrent = 0
@@ -203,6 +228,9 @@ class Character extends Sprite {
                 break;
             case 'jump-inverted':
                 if(this.image !== this.sprites.jumpInverted.image){
+                    if(this.image === this.sprites.attackInverted.image){
+                        this.position.x += 150
+                    }
                     this.image = this.sprites.jumpInverted.image
                     this.framesMax = this.sprites.jumpInverted.framesMax
                     this.framesCurrent = 0
@@ -215,6 +243,14 @@ class Character extends Sprite {
                     this.framesMax = this.sprites.attack.framesMax
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.attack.framesHold
+                }
+                break;
+            case 'attack-inverted':
+                if(this.image !== this.sprites.attackInverted.image){
+                    this.image = this.sprites.attackInverted.image
+                    this.framesMax = this.sprites.attackInverted.framesMax
+                    this.framesCurrent = 0
+                    this.framesHold = this.sprites.attackInverted.framesHold
                 }
                 break;
         }

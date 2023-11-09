@@ -31,7 +31,7 @@ const player1 = new Character({
     imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
     scale: 2,
     offset: {
-        x: 215,
+        x: 10,
         y: 0
     },
     sprites: {
@@ -67,9 +67,22 @@ const player1 = new Character({
         },
         attack: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-attack.png',
-            framesMax: 5,
+            framesMax: 8,
+            framesHold: 5
+        },
+        attackInverted: {
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-attack-inverted.png',
+            framesMax: 8,
             framesHold: 5
         }
+    },
+    attackBox: {
+        offset: {
+            x: 0,
+            y: 0
+        },
+        width: 180,
+        height: 50
     }
 })
 
@@ -84,9 +97,62 @@ const player2 = new Character({
         y: 0
     },
     color: 'blue',
+    imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
+    framesMax: 8,
+    scale: 2,
     offset: {
-        x: -50,
+        x: 10,
         y: 0
+    },
+    sprites: {
+        idle: {
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
+            framesMax: 8,
+            framesHold: 10
+        },
+        idleInverted: {
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle-inverted.png',
+            framesMax: 8,
+            framesHold: 10
+        },
+        run: {
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run.png',
+            framesMax: 8,
+            framesHold: 10
+        },
+        runInverted: {
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run-inverted.png',
+            framesMax: 8,
+            framesHold: 10
+        },
+        jump: {
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump.png',
+            framesMax: 2,
+            framesHold: 10
+        },
+        jumpInverted: {
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump-inverted.png',
+            framesMax: 2,
+            framesHold: 10
+        },
+        attack: {
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-attack.png',
+            framesMax: 8,
+            framesHold: 5
+        },
+        attackInverted: {
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-attack-inverted.png',
+            framesMax: 8,
+            framesHold: 5
+        }
+    },
+    attackBox: {
+        offset: {
+            x: 0,
+            y: 0
+        },
+        width: 180,
+        height: 50
     }
 })
 
@@ -108,9 +174,12 @@ const keys = {
 decreaseTimer()
 
 function isOnGround(player){
-    return player.position.y + player.height + player.velocity.y >= canvas.height - 70
+    return player.position.y + player.height + player.velocity.y >= canvas.height - 90
 }
 
+
+player1.direction = 1
+player2.direction = -1
 
 function animate() {
     window.requestAnimationFrame(animate)
@@ -118,7 +187,7 @@ function animate() {
     context.fillRect(0,0,canvas.width,canvas.height)
     background.update()
     player1.update()
-    // player2.update()
+    player2.update()
 
     player1.velocity.x = 0
     player2.velocity.x = 0
@@ -142,6 +211,7 @@ function animate() {
         }
     }
 
+    //Player 1 jump
     if(player1.velocity.y < 0 || player1.velocity.y > 0) {
         if(player1.direction === -1){
             player1.switchSprite('jump-inverted')
@@ -150,11 +220,30 @@ function animate() {
         }
     }
 
+    
     //Player 2 movement
     if(keys.ArrowLeft.pressed && player2.lastKey === 'ArrowLeft'){
         player2.velocity.x = -player2.movSpeed
+        player2.direction = -1
+        if(isOnGround(player2)){ player2.switchSprite('run-inverted') }
     } else if (keys.ArrowRight.pressed && player2.lastKey === 'ArrowRight'){
         player2.velocity.x = player2.movSpeed
+        player2.direction = 1
+        if(isOnGround(player2)){ player2.switchSprite('run') }
+    } else if (isOnGround(player2)){
+        if(player2.direction === -1){
+            player2.switchSprite('idle-inverted')
+        } else {
+            player2.switchSprite('idle')
+        }
+    }
+    //Player 2 jump
+    if(player2.velocity.y < 0 || player2.velocity.y > 0) {
+        if(player2.direction === -1){
+            player2.switchSprite('jump-inverted')
+        } else {
+            player2.switchSprite('jump')
+        }
     }
 
     //Detect for collision
@@ -194,15 +283,19 @@ function animate() {
     }
 
     //Orientation collision change
-    if (player1.position.x + player1.width > player2.position.x + player2.width){
-        player1.attackBox.offset.x = -50
+    if (player1.direction === -1){
+        player1.offset.x = 40
+        player1.attackBox.offset.x = 30
     } else {
         player1.attackBox.offset.x = 0
+        player1.offset.x = 10
     }
-    if (player2.position.x + player2.width < player1.position.x + player1.width){
-        player2.attackBox.offset.x = 0
+    if (player2.direction === -1){
+        player2.offset.x = 40
+        player2.attackBox.offset.x = 30
     } else {
-        player2.attackBox.offset.x = -50
+        player2.attackBox.offset.x = 0
+        player2.offset.x = 10
     }
 }
 
@@ -226,7 +319,10 @@ window.addEventListener('keydown', (event) =>{
             }
             break
         case ' ':
-            player1.attack()
+            if(player1.canAttack ==='true'){
+                if(player1.direction === -1 && player1.position.x <= 0) return
+                player1.attack()
+            }
             break
 
     //Player 2 keys
@@ -245,7 +341,10 @@ window.addEventListener('keydown', (event) =>{
                 }
                 break
             case 'Enter':
-                player2.attack()
+                if(player2.canAttack === 'true'){
+                    if(player2.direction === -1 && player2.position.x <= 0) return
+                    player2.attack()
+                }
                 break
         }
 })
