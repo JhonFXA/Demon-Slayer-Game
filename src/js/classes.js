@@ -45,13 +45,20 @@ class Sprite {
             this.image.height * this.scale
         )
 
-        context.fillStyle = this.color
-        context.fillRect(this.position.x, this.position.y, this.width, this.height)
-        // // Attack box
-        // // if(this.isAttacking){
-            context.fillStyle = 'green'
-            context.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
-        // // }
+        if(keys.Control.pressed){
+            if(controlSwitch === 1){
+                context.fillStyle = this.color
+                context.fillRect(this.position.x, this.position.y, this.width, this.height)
+                // // Attack box
+                // // if(this.isAttacking){
+                    context.fillStyle = 'green'
+                    context.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+                // // }
+            } else {
+                controlSwitch = 0
+            }
+        }
+
     }
 
     animateFrames(){
@@ -146,19 +153,13 @@ class Character extends Sprite {
         //Collision with walls
         if(this.position.x <= 0) {
             this.position.x = 0
-        } else if (this.position.x + this.width >= canvas.width - 40){
-            this.position.x = canvas.width - this.width - 40
+        } else if (this.position.x + this.width >= canvas.width){
+            this.position.x = canvas.width - this.width
         }
 
     }
 
     attack() {
-        if (this.direction === -1){
-            this.switchSprite('attack-inverted')
-            
-        } else{
-            this.switchSprite('attack')
-        }
 
         this.isAttacking = true
 
@@ -212,9 +213,6 @@ class Character extends Sprite {
                 break;
             case 'run-inverted':
                 if(this.image !== this.sprites.runInverted.image){
-                    if(this.image === this.sprites.attackInverted.image){
-                        this.position.x += 150
-                    }
                     this.image = this.sprites.runInverted.image
                     this.framesMax = this.sprites.runInverted.framesMax
                     this.framesCurrent = 0
@@ -234,9 +232,6 @@ class Character extends Sprite {
                 break;
             case 'jump-inverted':
                 if(this.image !== this.sprites.jumpInverted.image){
-                    if(this.image === this.sprites.attackInverted.image){
-                        this.position.x += 150
-                    }
                     this.image = this.sprites.jumpInverted.image
                     this.framesMax = this.sprites.jumpInverted.framesMax
                     this.framesCurrent = 0

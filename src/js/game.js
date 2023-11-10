@@ -28,10 +28,11 @@ const player1 = new Character({
         x: 0,
         y: 0
     },
+    color: 'red',
     imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
     scale: 2,
     offset: {
-        x: 10,
+        x: 200,
         y: 0
     },
     sprites: {
@@ -39,25 +40,37 @@ const player1 = new Character({
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
             framesMax: 8,
             framesHold: 10,
-            scale: 2
+            scale: 2,
+            offset: {
+                y: 0
+            }
         },
         idleInverted: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle-inverted.png',
             framesMax: 8,
             framesHold: 10,
-            scale: 2
+            scale: 2,
+            offset: {
+                y: 0
+            }
         },
         run: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run.png',
             framesMax: 8,
             framesHold: 10,
-            scale: 2
+            scale: 2,
+            offset: {
+                y: 0
+            }
         },
         runInverted: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run-inverted.png',
             framesMax: 8,
             framesHold: 10,
-            scale: 2
+            scale: 2,
+            offset: {
+                y: 0
+            }
         },
         jump: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump.png',
@@ -87,7 +100,7 @@ const player1 = new Character({
             x: 0,
             y: 0
         },
-        width: 180,
+        width: 170,
         height: 50
     }
 })
@@ -107,7 +120,7 @@ const player2 = new Character({
     framesMax: 8,
     scale: 2,
     offset: {
-        x: 10,
+        x: 200,
         y: 0
     },
     sprites: {
@@ -165,7 +178,7 @@ const player2 = new Character({
             framesHold: 5
         },
         attackInverted: {
-            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-attack-inverted2.png',
+            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-attack-inverted.png',
             framesMax: 8,
             framesHold: 5
         }
@@ -175,7 +188,7 @@ const player2 = new Character({
             x: 0,
             y: 0
         },
-        width: 180,
+        width: 170,
         height: 50
     }
 })
@@ -192,6 +205,9 @@ const keys = {
     },
     ArrowRight: {
         pressed: false
+    },
+    Control: {
+        pressed: false
     }
 }
 
@@ -206,6 +222,7 @@ player1.direction = 1
 player2.direction = -1
 
 function animate() {
+    
     window.requestAnimationFrame(animate)
     context.fillStyle = 'black'
     context.fillRect(0,0,canvas.width,canvas.height)
@@ -307,27 +324,35 @@ function animate() {
     }
 
     //Orientation collision change
-    if (player1.direction === -1){
-        player1.offset.x = 40
-        player1.attackBox.offset.x = 30
-    } else {
+
+    if(player1.position.x + player1.width <= player2.position.x + player2.width){
         player1.attackBox.offset.x = 0
-        player1.offset.x = 10
-    }
-    if (player2.direction === -1){
-        player2.offset.x = 200
-        player2.attackBox.offset.x = -130
     } else {
+        player1.attackBox.offset.x = -120
+    }
+    if(player1.position.x + player1.width >= player2.position.x + player2.width){
         player2.attackBox.offset.x = 0
-        player2.offset.x = 200
+    } else {
+        player2.attackBox.offset.x = -120
     }
 }
 
 animate()
 
+
+
+let controlSwitch = 0
 window.addEventListener('keydown', (event) =>{
+
+
     //Player 1 keys
     switch (event.key) {
+
+        case 'Control':
+            keys.Control.pressed = true
+            controlSwitch++
+        // // }
+            break
         case 'd':
             keys.d.pressed = true
             player1.lastKey = 'd'
@@ -338,14 +363,18 @@ window.addEventListener('keydown', (event) =>{
             break
         case 'w':
             if(player1.jumps>0){
-                player1.velocity.y = -10
+                player1.velocity.y = -11
                 player1.jumps--
             }
             break
         case ' ':
             if(player1.canAttack ==='true'){
-                if(player1.direction === -1 && player1.position.x <= 0) return
                 player1.attack()
+                if(player1.position.x + player1.width <= player2.position.x + player2.width) {
+                    player1.switchSprite('attack')
+                } else {
+                    player1.switchSprite('attack-inverted')
+                }
             }
             break
 
@@ -360,16 +389,22 @@ window.addEventListener('keydown', (event) =>{
             break
             case 'ArrowUp':
                 if(player2.jumps>0){
-                    player2.velocity.y = -10
+                    player2.velocity.y = -11
                     player2.jumps--
                 }
                 break
             case 'Enter':
                 if(player2.canAttack === 'true'){
-                    if(player2.direction === -1 && player2.position.x <= 0) return
                     player2.attack()
+                    if(player1.position.x + player1.width >= player2.position.x + player2.width) {
+                        player2.switchSprite('attack')
+                    } else {
+                        player2.switchSprite('attack-inverted')
+                    }
                 }
                 break
+
+
         }
 })
 window.addEventListener('keyup', (event) =>{
