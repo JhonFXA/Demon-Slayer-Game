@@ -38,32 +38,38 @@ const player1 = new Character({
         idle: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
             framesMax: 8,
-            framesHold: 10
+            framesHold: 10,
+            scale: 2
         },
         idleInverted: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle-inverted.png',
             framesMax: 8,
-            framesHold: 10
+            framesHold: 10,
+            scale: 2
         },
         run: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run.png',
             framesMax: 8,
-            framesHold: 10
+            framesHold: 10,
+            scale: 2
         },
         runInverted: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run-inverted.png',
             framesMax: 8,
-            framesHold: 10
+            framesHold: 10,
+            scale: 2
         },
         jump: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump.png',
             framesMax: 2,
-            framesHold: 10
+            framesHold: 10,
+            scale: 2
         },
         jumpInverted: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump-inverted.png',
             framesMax: 2,
-            framesHold: 10
+            framesHold: 10,
+            scale: 2
         },
         attack: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-attack.png',
@@ -97,7 +103,7 @@ const player2 = new Character({
         y: 0
     },
     color: 'blue',
-    imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
+    imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-idle.png',
     framesMax: 8,
     scale: 2,
     offset: {
@@ -106,42 +112,60 @@ const player2 = new Character({
     },
     sprites: {
         idle: {
-            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
+            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-idle.png',
             framesMax: 8,
-            framesHold: 10
+            framesHold: 10,
+            scale: 2,
+            offset: {
+                y: 0
+            }
         },
         idleInverted: {
-            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle-inverted.png',
+            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-idle-inverted.png',
             framesMax: 8,
-            framesHold: 10
+            framesHold: 10,
+            scale: 2,
+            offset: {
+                y: 0
+            }
         },
         run: {
-            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run.png',
-            framesMax: 8,
-            framesHold: 10
+            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-run.png',
+            framesMax: 4,
+            framesHold: 10,
+            scale: 1.8,
+            offset: {
+                y: -10
+            }
         },
         runInverted: {
-            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run-inverted.png',
-            framesMax: 8,
-            framesHold: 10
+            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-run-inverted.png',
+            framesMax: 4,
+            framesHold: 10,
+            scale: 1.8,
+            offset: {
+                y: -10
+            }
         },
         jump: {
-            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump.png',
+            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-jump.png',
             framesMax: 2,
-            framesHold: 10
+            framesHold: 10,
+            scale: 2
         },
         jumpInverted: {
-            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump-inverted.png',
+            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-jump-inverted.png',
             framesMax: 2,
-            framesHold: 10
+            framesHold: 10,
+            scale: 2
         },
         attack: {
-            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-attack.png',
+            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-attack.png',
             framesMax: 8,
             framesHold: 5
         },
         attackInverted: {
-            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-attack-inverted.png',
+            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-attack-inverted2.png',
             framesMax: 8,
             framesHold: 5
         }
@@ -291,11 +315,11 @@ function animate() {
         player1.offset.x = 10
     }
     if (player2.direction === -1){
-        player2.offset.x = 40
-        player2.attackBox.offset.x = 30
+        player2.offset.x = 200
+        player2.attackBox.offset.x = -130
     } else {
         player2.attackBox.offset.x = 0
-        player2.offset.x = 10
+        player2.offset.x = 200
     }
 }
 

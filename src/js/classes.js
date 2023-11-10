@@ -45,13 +45,13 @@ class Sprite {
             this.image.height * this.scale
         )
 
-        // context.fillStyle = this.color
-        // context.fillRect(this.position.x, this.position.y, this.width, this.height)
-        // // // Attack box
-        // // // if(this.isAttacking){
-            // context.fillStyle = 'green'
-            // context.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
-        // // // }
+        context.fillStyle = this.color
+        context.fillRect(this.position.x, this.position.y, this.width, this.height)
+        // // Attack box
+        // // if(this.isAttacking){
+            context.fillStyle = 'green'
+            context.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
+        // // }
     }
 
     animateFrames(){
@@ -155,7 +155,7 @@ class Character extends Sprite {
     attack() {
         if (this.direction === -1){
             this.switchSprite('attack-inverted')
-            this.position.x = this.position.x - 150
+            
         } else{
             this.switchSprite('attack')
         }
@@ -186,17 +186,18 @@ class Character extends Sprite {
                     this.framesMax = this.sprites.idle.framesMax
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.idle.framesHold
+                    this.scale = this.sprites.idle.scale
+                    this.offset.y = this.sprites.idle.offset.y
                 }
                 break;
             case 'idle-inverted':
                 if(this.image !== this.sprites.idleInverted.image){
-                    if(this.image === this.sprites.attackInverted.image){
-                        this.position.x += 150
-                    }
                     this.image = this.sprites.idleInverted.image
                     this.framesMax = this.sprites.idleInverted.framesMax
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.idleInverted.framesHold
+                    this.scale = this.sprites.idleInverted.scale
+                    this.offset.y = this.sprites.idleInverted.offset.y
                 }
                 break;
             case 'run':
@@ -205,6 +206,8 @@ class Character extends Sprite {
                     this.framesMax = this.sprites.run.framesMax
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.run.framesHold
+                    this.scale = this.sprites.run.scale
+                    this.offset.y = this.sprites.run.offset.y
                 }
                 break;
             case 'run-inverted':
@@ -216,6 +219,8 @@ class Character extends Sprite {
                     this.framesMax = this.sprites.runInverted.framesMax
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.runInverted.framesHold
+                    this.scale = this.sprites.runInverted.scale
+                    this.offset.y = this.sprites.runInverted.offset.y
                 }
                 break;
             case 'jump':
@@ -224,6 +229,7 @@ class Character extends Sprite {
                     this.framesMax = this.sprites.jump.framesMax
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.jump.framesHold
+                    this.scale = this.sprites.jump.scale
                 }
                 break;
             case 'jump-inverted':
@@ -235,6 +241,7 @@ class Character extends Sprite {
                     this.framesMax = this.sprites.jumpInverted.framesMax
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.jumpInverted.framesHold
+                    this.scale = this.sprites.jumpInverted.scale
                 }
                 break;
             case 'attack':
