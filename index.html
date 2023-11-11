@@ -12,16 +12,20 @@
   
 </head>
 <body>
-    <header> 
-        <img src="./src/imagens/demonslayer-logo.png" alt="Demon Slayer Game">
-    </header>
-
-    <main>
-        <div class="container">
-            <ul>
-                <li><a class="button" href="html/character-select.html">Play</a></li>
-            </ul>
+    <div class="container">
+        <div class="illustration">
+            <img src="src/imagens/menu-illustration.jpg" aria-hidden="true"/>
         </div>
-    </main>
+        <nav class="menu">
+            <img class="logo" src="src/imagens/demonslayer-logo.png" alt="Demon Slayer">
+            <ul class="button-list">
+                <li><button class="active" onclick="startGame()">Start Game</button></li>
+                <li><button class="inactive">Tutorial</button></li>
+                <li><button class="inactive">Options</button></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <script src="src/js/index.js"></script>
 </body>
 </html>

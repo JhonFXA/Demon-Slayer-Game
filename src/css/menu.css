@@ -1,76 +1,59 @@
-
-body {
-    font-family: 'demon', Courier, monospace;
-    background-image: url(../imagens/menu-background.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: black;
-}
-
-header img {
-    height: 300px;
-    display: block;
-    margin: auto;
-
-}
-
-.button {
-    text-decoration: none;
-    display: block;
-    background-color: rgb(15, 15, 15);
-    color: rgb(255, 255, 255);
-    height: 50px;
-    width: 100px;
-    text-align: center;
-    font-size: 30px;
-    border: solid rgb(255, 0, 0);
-    animation: c-glowing-red .5s ease-in-out infinite;
-    animation-direction: alternate;
-}
-
-.button:hover {
-    animation: c-glowing-red .5s ease-in-out infinite;
-    animation-direction: alternate;
-    transform: scale(1.09);
-    transition: 0.3s;
-}
-
+/* Estilos para as divs */
 .container {
-    margin-top: 100px;
+    display: flex;
+    height: 100vh;
+}
+
+.illustration {
+    flex: 1.5;
+    position: relative;
+    overflow: hidden;
+}
+
+.illustration img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu {
     display: flex;
     justify-content: center;
-}
-
-.links{
-    display: flex;
-    justify-content: space-around;
     align-items: center;
-    margin-top: 100px;
+    flex-direction: column;
+    flex: 1;
+    background-image: linear-gradient(rgb(31, 27, 39), rgb(44, 44, 165), rgb(183, 0, 255));
 }
 
-.links img{
-    height: 30px;
-    position: relative;
-    top: 10px;
+.logo {
+    height: 300px;
+    margin-bottom: 100px;
 }
 
-.links a {
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    text-decoration: none;
-}
-
-.cute-slayers :nth-child(1) {
-    height: 100px;
-}
-
-.cute-slayers img{
-    height: 100px;
-}
-
-.cute-slayers {
+.button-list {
     display: flex;
-    position: absolute;
-    right: 0;
-    bottom: 120px;
+    flex-direction: column;
+    gap: 10px;
+    width: 70%;
+}
+
+button {
+    background-image: radial-gradient(rgb(43, 43, 26), rgb(43, 43, 26));
+    background-color: rgb(43, 43, 26);
+    color: #fff;
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    border-block: groove 4px rgb(190, 153, 93);
+    cursor: pointer;
+    transition: ease 0.5s;
+}
+
+.active:hover {
+    background-image: radial-gradient(rgb(252, 214, 0), rgb(165, 117, 44));
+    color: #000;
+}
+
+.inactive {
+    opacity: 0.4;
 }
