@@ -91,7 +91,9 @@ class Character extends Sprite {
         sprites,
         attackBox = { offset: {x:0, y:0}, width: undefined, height: undefined},
         direction,
-        canAttack = 'true'
+        canAttack = true,
+        canMove = true,
+        strikedFirst
     }){
         super({
             position,
@@ -124,6 +126,8 @@ class Character extends Sprite {
         this.sprites = sprites
         this.direction = direction
         this.canAttack = canAttack
+        this.canMove = canMove
+        this.strikedFirst = strikedFirst
 
 
         for (const sprite in this.sprites){
@@ -160,25 +164,42 @@ class Character extends Sprite {
     }
 
     attack() {
-
         this.isAttacking = true
+        this.strikedFirst = true
 
-        this.canAttack = 'false'
+        this.canAttack = false
 
         setTimeout(()=>{
-            this.canAttack = 'true'
+            this.canAttack = true
         },700)
     }
 
+    takeHit(){
+        this.switchSprite('take-hit')
+        this.canMove = false
+        if(this.health > 0){
+            this.health -= 4
+        }
+    }
+    
     switchSprite(sprite) {
-
-        if (this.image === this.sprites.attack.image && this.framesCurrent < this.sprites.attack.framesMax - 1 || this.image === this.sprites.attackInverted.image && this.framesCurrent < this.sprites.attackInverted.framesMax - 1) {
+        //overriding all other animations with the attack animation
+        if (this.image === this.sprites.attack.image && this.framesCurrent < this.sprites.attack.framesMax - 1  || this.image === this.sprites.attackInverted.image && this.framesCurrent < this.sprites.attackInverted.framesMax - 1) {
             return
         }
+        //override when character gets hit
+        if(this.image === this.sprites.takeHit.image && this.framesCurrent < this.sprites.takeHit.framesMax - 1){
+            return
+        }
+
+
 
         switch(sprite) {
             case 'idle':
                 if(this.image !== this.sprites.idle.image){
+                    this.strikedFirst = false
+                    this.canAttack = true
+                    this.canMove = true
                     this.image = this.sprites.idle.image
                     this.framesMax = this.sprites.idle.framesMax
                     this.framesCurrent = 0
@@ -189,6 +210,9 @@ class Character extends Sprite {
                 break;
             case 'idle-inverted':
                 if(this.image !== this.sprites.idleInverted.image){
+                    this.strikedFirst = false
+                    this.canAttack = true
+                    this.canMove = true
                     this.image = this.sprites.idleInverted.image
                     this.framesMax = this.sprites.idleInverted.framesMax
                     this.framesCurrent = 0
@@ -249,6 +273,17 @@ class Character extends Sprite {
                     this.framesMax = this.sprites.attackInverted.framesMax
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.attackInverted.framesHold
+                }
+                break;
+            case 'take-hit':
+                if(this.image !== this.sprites.takeHit.image){
+                    this.canAttack = false
+                    this.image = this.sprites.takeHit.image
+                    this.framesMax = this.sprites.takeHit.framesMax
+                    this.framesCurrent = 0
+                    this.framesHold = this.sprites.takeHit.framesHold
+                    this.scale = this.sprites.takeHit.scale
+                    this.offset.y = this.sprites.takeHit.offset.y
                 }
                 break;
         }

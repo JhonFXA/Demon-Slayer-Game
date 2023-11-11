@@ -93,6 +93,15 @@ const player1 = new Character({
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-attack-inverted.png',
             framesMax: 8,
             framesHold: 5
+        },
+        takeHit: {
+            imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-hurt.png',
+            framesMax: 5,
+            framesHold: 5,
+            scale: 3,
+            offset: {
+                y: 0
+            }
         }
     },
     attackBox: {
@@ -100,7 +109,7 @@ const player1 = new Character({
             x: 0,
             y: 50
         },
-        width: 170,
+        width: 180,
         height: 50
     }
 })
@@ -181,6 +190,15 @@ const player2 = new Character({
             imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-attack-inverted.png',
             framesMax: 8,
             framesHold: 5
+        },
+        takeHit: {
+            imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-hurt.png',
+            framesMax: 5,
+            framesHold: 5,
+            scale: 2.9,
+            offset: {
+                y: 0
+            }
         }
     },
     attackBox: {
@@ -188,7 +206,7 @@ const player2 = new Character({
             x: 0,
             y: 50
         },
-        width: 200,
+        width: 180,
         height: 50
     }
 })
@@ -235,12 +253,12 @@ function animate() {
 
     
     //Player 1 movement
-    if(keys.a.pressed && player1.lastKey === 'a'){
+    if(keys.a.pressed && player1.lastKey === 'a' && player1.canMove){
         player1.velocity.x = -player1.movSpeed
         player1.direction = -1
         if(isOnGround(player1)){ player1.switchSprite('run-inverted') }
 
-    } else if (keys.d.pressed && player1.lastKey === 'd'){
+    } else if (keys.d.pressed && player1.lastKey === 'd' && player1.canMove){
         player1.velocity.x = player1.movSpeed
         player1.direction = 1
         if(isOnGround(player1)){ player1.switchSprite('run') }
@@ -253,7 +271,7 @@ function animate() {
     }
 
     //Player 1 jump
-    if(player1.velocity.y < 0 || player1.velocity.y > 0) {
+    if(player1.velocity.y < 0 || player1.velocity.y > 0 && player1.canMove) {
         if(player1.direction === -1){
             player1.switchSprite('jump-inverted')
         } else {
@@ -263,11 +281,11 @@ function animate() {
 
     
     //Player 2 movement
-    if(keys.ArrowLeft.pressed && player2.lastKey === 'ArrowLeft'){
+    if(keys.ArrowLeft.pressed && player2.lastKey === 'ArrowLeft' && player2.canMove){
         player2.velocity.x = -player2.movSpeed
         player2.direction = -1
         if(isOnGround(player2)){ player2.switchSprite('run-inverted') }
-    } else if (keys.ArrowRight.pressed && player2.lastKey === 'ArrowRight'){
+    } else if (keys.ArrowRight.pressed && player2.lastKey === 'ArrowRight' && player2.canMove){
         player2.velocity.x = player2.movSpeed
         player2.direction = 1
         if(isOnGround(player2)){ player2.switchSprite('run') }
@@ -293,11 +311,13 @@ function animate() {
             rectangle1: player1,
             rectangle2: player2
         }) && 
-        player1.isAttacking && player1.framesCurrent === 4
+        player1.isAttacking && player1.framesCurrent === 4 && !player2.strikedFirst
         ) {
+            player1.strikedFirst = true
+            player2.strikedFirst = false
+            player2.takeHit()
             player1.isAttacking = false
             player2.color = 'yellow'
-            player2.health -= 4 
             document.querySelector('.health-quantity-P2').style.width = player2.health + '%'
             setTimeout(() => {
                 document.querySelector('.lose-health-P2').style.width = player2.health + '%'
@@ -316,11 +336,13 @@ function animate() {
             rectangle1: player2,
             rectangle2: player1
         }) && 
-        player2.isAttacking && player2.framesCurrent === 4
+        player2.isAttacking && player2.framesCurrent === 4 && !player1.strikedFirst
         ) {
+            player2.strikedFirst = true
+            player1.strikedFirst = false
+            player1.takeHit()
             player2.isAttacking = false 
             player1.color = 'yellow'
-            player1.health -= 4 
             document.querySelector('.health-quantity-P1').style.width = player1.health + '%'
             setTimeout(() => {
                 document.querySelector('.lose-health-P1').style.width = player1.health + '%'
@@ -343,7 +365,7 @@ function animate() {
     if(player1.position.x + player1.width >= player2.position.x + player2.width){
         player2.attackBox.offset.x = 80
     } else {
-        player2.attackBox.offset.x = -200
+        player2.attackBox.offset.x = -170
     }
 }
 
@@ -378,7 +400,7 @@ window.addEventListener('keydown', (event) =>{
             }
             break
         case ' ':
-            if(player1.canAttack ==='true'){
+            if(player1.canAttack && player1.canMove && !player2.strikedFirst){
                 player1.attack()
                 if(player1.position.x + player1.width <= player2.position.x + player2.width) {
                     player1.switchSprite('attack')
@@ -398,13 +420,13 @@ window.addEventListener('keydown', (event) =>{
             player2.lastKey = 'ArrowLeft'
             break
             case 'ArrowUp':
-                if(player2.jumps>0){
+                if(player2.jumps>0 && player2.canMove){
                     player2.velocity.y = -11
                     player2.jumps--
                 }
                 break
             case 'Enter':
-                if(player2.canAttack === 'true'){
+                if(player2.canAttack && player2.canMove && !player1.strikedFirst){
                     player2.attack()
                     if(player1.position.x + player1.width >= player2.position.x + player2.width) {
                         player2.switchSprite('attack')
