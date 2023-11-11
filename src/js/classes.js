@@ -89,7 +89,7 @@ class Character extends Sprite {
         framesMax = 1,
         offset = { x:0, y:0 },
         sprites,
-        attackBox = { offset: {}, width: undefined, height: undefined},
+        attackBox = { offset: {x:0, y:0}, width: undefined, height: undefined},
         direction,
         canAttack = 'true'
     }){
@@ -101,8 +101,8 @@ class Character extends Sprite {
             offset
         })
         this.velocity = velocity
-        this.width = 50
-        this.height = 100
+        this.width = 80
+        this.height = 150
         this.lastKey
         this.movSpeed = 8
         this.jumps = 2
@@ -162,10 +162,6 @@ class Character extends Sprite {
     attack() {
 
         this.isAttacking = true
-
-        setTimeout(() => {
-            this.isAttacking = false
-        }, 100);
 
         this.canAttack = 'false'
 

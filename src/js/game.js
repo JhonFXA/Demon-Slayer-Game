@@ -22,7 +22,7 @@ const background = new SpriteScenery({
 const player1 = new Character({
     position: {
         x: 0,
-        y: 400
+        y: 100
     },
     velocity: {
         x: 0,
@@ -30,17 +30,17 @@ const player1 = new Character({
     },
     color: 'red',
     imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
-    scale: 2,
+    scale: 3,
     offset: {
-        x: 200,
-        y: 0
+        x: 300,
+        y: 100
     },
     sprites: {
         idle: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle.png',
             framesMax: 8,
             framesHold: 10,
-            scale: 2,
+            scale: 3,
             offset: {
                 y: 0
             }
@@ -49,7 +49,7 @@ const player1 = new Character({
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-idle-inverted.png',
             framesMax: 8,
             framesHold: 10,
-            scale: 2,
+            scale: 3,
             offset: {
                 y: 0
             }
@@ -58,7 +58,7 @@ const player1 = new Character({
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run.png',
             framesMax: 8,
             framesHold: 10,
-            scale: 2,
+            scale: 3,
             offset: {
                 y: 0
             }
@@ -67,7 +67,7 @@ const player1 = new Character({
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-run-inverted.png',
             framesMax: 8,
             framesHold: 10,
-            scale: 2,
+            scale: 3,
             offset: {
                 y: 0
             }
@@ -76,13 +76,13 @@ const player1 = new Character({
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump.png',
             framesMax: 2,
             framesHold: 10,
-            scale: 2
+            scale: 3
         },
         jumpInverted: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-jump-inverted.png',
             framesMax: 2,
             framesHold: 10,
-            scale: 2
+            scale: 3
         },
         attack: {
             imageSrc: '../src/imagens/game-assets/tanjiro/tanjiro-attack.png',
@@ -98,7 +98,7 @@ const player1 = new Character({
     attackBox: {
         offset: {
             x: 0,
-            y: 0
+            y: 50
         },
         width: 170,
         height: 50
@@ -118,9 +118,9 @@ const player2 = new Character({
     color: 'blue',
     imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-idle.png',
     framesMax: 8,
-    scale: 2,
+    scale: 3,
     offset: {
-        x: 200,
+        x: 300,
         y: 0
     },
     sprites: {
@@ -128,49 +128,49 @@ const player2 = new Character({
             imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-idle.png',
             framesMax: 8,
             framesHold: 10,
-            scale: 2,
+            scale: 2.9,
             offset: {
-                y: 0
+                y: -5
             }
         },
         idleInverted: {
             imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-idle-inverted.png',
             framesMax: 8,
             framesHold: 10,
-            scale: 2,
+            scale: 2.9,
             offset: {
-                y: 0
+                y: -5
             }
         },
         run: {
             imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-run.png',
             framesMax: 4,
             framesHold: 10,
-            scale: 1.8,
+            scale: 2.5,
             offset: {
-                y: -10
+                y: -20
             }
         },
         runInverted: {
             imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-run-inverted.png',
             framesMax: 4,
             framesHold: 10,
-            scale: 1.8,
+            scale: 2.5,
             offset: {
-                y: -10
+                y: -20
             }
         },
         jump: {
             imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-jump.png',
             framesMax: 2,
             framesHold: 10,
-            scale: 2
+            scale: 2.9
         },
         jumpInverted: {
             imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-jump-inverted.png',
             framesMax: 2,
             framesHold: 10,
-            scale: 2
+            scale: 2.9
         },
         attack: {
             imageSrc: '../src/imagens/game-assets/zenitsu/zenitsu-attack.png',
@@ -186,9 +186,9 @@ const player2 = new Character({
     attackBox: {
         offset: {
             x: 0,
-            y: 0
+            y: 50
         },
-        width: 170,
+        width: 200,
         height: 50
     }
 })
@@ -214,7 +214,7 @@ const keys = {
 decreaseTimer()
 
 function isOnGround(player){
-    return player.position.y + player.height + player.velocity.y >= canvas.height - 90
+    return player.position.y + player.height + player.velocity.y >= canvas.height - 200
 }
 
 
@@ -293,7 +293,7 @@ function animate() {
             rectangle1: player1,
             rectangle2: player2
         }) && 
-        player1.isAttacking
+        player1.isAttacking && player1.framesCurrent === 4
         ) {
             player1.isAttacking = false
             player2.color = 'yellow'
@@ -305,12 +305,18 @@ function animate() {
     } else {
         player2.color = 'blue'
     }
+
+    if(player1.isAttacking && player1.framesCurrent === 4){
+        player1.isAttacking = false
+    }
+
+
     if (
         rectangularCollision({
             rectangle1: player2,
             rectangle2: player1
         }) && 
-        player2.isAttacking
+        player2.isAttacking && player2.framesCurrent === 4
         ) {
             player2.isAttacking = false 
             player1.color = 'yellow'
@@ -323,17 +329,21 @@ function animate() {
         player1.color = 'red'
     }
 
+    if(player2.isAttacking && player2.framesCurrent === 4){
+        player2.isAttacking = false
+    }
+
     //Orientation collision change
 
     if(player1.position.x + player1.width <= player2.position.x + player2.width){
-        player1.attackBox.offset.x = 0
+        player1.attackBox.offset.x = 80
     } else {
-        player1.attackBox.offset.x = -120
+        player1.attackBox.offset.x = -170
     }
     if(player1.position.x + player1.width >= player2.position.x + player2.width){
-        player2.attackBox.offset.x = 0
+        player2.attackBox.offset.x = 80
     } else {
-        player2.attackBox.offset.x = -120
+        player2.attackBox.offset.x = -200
     }
 }
 
