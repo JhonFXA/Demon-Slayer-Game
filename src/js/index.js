@@ -1,5 +1,5 @@
 function startGame(){
-    window.location.href = "../../html/character-select.html"
+    window.location.href = "html/character-select.html"
 }
 
 for (const button of document.querySelectorAll('.inactive')) {
