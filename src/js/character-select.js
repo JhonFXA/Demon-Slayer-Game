@@ -51,7 +51,7 @@ characters.forEach( character =>{
         li.setAttribute('data-name', character.name)
     
         const icon = document.createElement('img')
-        icon.src = `../src/imagens/${character.id}-icon.jpg`
+        icon.src = `src/imagens/${character.id}-icon.jpg`
         icon.alt = `${character.name} Character`
     
         characterList.appendChild(li)
