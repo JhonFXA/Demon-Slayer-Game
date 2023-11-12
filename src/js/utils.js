@@ -14,5 +14,32 @@ function decreaseTimer() {
         setTimeout(decreaseTimer, 1000)
         timer--
         document.getElementById('timer').innerHTML = timer
+    } else if ( timer === 0){
+        document.getElementById('winning-result').style.display = 'block'
+        if(player1.health > player2.health){
+            document.getElementById('winner').innerHTML = characterP1.toUpperCase()
+        } else if (player1.health < player2.health){
+            document.getElementById('winner').innerHTML = characterP2.toUpperCase()
+        } else {
+            document.getElementById('winning-result').innerHTML = "DRAW!"
+
+        }
+        setTimeout(() => {
+            document.querySelector('nav').style.display = 'flex'
+            document.querySelector('.match-result').style.background = 'black'
+            setTimeout(() => {
+               const buttons = document.querySelectorAll('#button')
+               buttons[0].style.opacity = 1
+               buttons[1].style.opacity = 1
+            }, 1500);
+        }, 1000);
     }
+}
+
+function rematch(){
+    location.reload()
+}
+
+function changeCharacter(){
+    window.location.href = "character-select.html"
 }

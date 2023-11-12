@@ -107,6 +107,13 @@ const player1 = new Character({
             framesHold: characterDefaultSettings[characterP1].takeHit.framesHold,
             scale: characterDefaultSettings[characterP1].takeHit.scale,
             offset: characterDefaultSettings[characterP1].takeHit.offset
+        },
+        fall: {
+            imageSrc: `../src/imagens/game-assets/${characterP1}/${characterP1}-fall.png`,
+            framesMax: characterDefaultSettings[characterP1].fall.framesMax,
+            framesHold: characterDefaultSettings[characterP1].fall.framesHold,
+            scale: characterDefaultSettings[characterP1].fall.scale,
+            offset: characterDefaultSettings[characterP1].fall.offset
         }
     },
     attackBox: {
@@ -199,6 +206,13 @@ const player2 = new Character({
             framesHold: characterDefaultSettings[characterP2].takeHit.framesHold,
             scale: characterDefaultSettings[characterP2].takeHit.scale,
             offset: characterDefaultSettings[characterP2].takeHit.offset
+        },
+        fall: {
+            imageSrc: `../src/imagens/game-assets/${characterP2}/${characterP2}-fall.png`,
+            framesMax: characterDefaultSettings[characterP2].fall.framesMax,
+            framesHold: characterDefaultSettings[characterP2].fall.framesHold,
+            scale: characterDefaultSettings[characterP2].fall.scale,
+            offset: characterDefaultSettings[characterP2].fall.offset
         }
     },
     attackBox: {
@@ -239,8 +253,8 @@ function isOnGround(player){
 player1.direction = 1
 player2.direction = -1
 
+
 function animate() {
-    
     window.requestAnimationFrame(animate)
     context.fillStyle = `black`
     context.fillRect(0,0,canvas.width,canvas.height)
@@ -250,7 +264,6 @@ function animate() {
 
     player1.velocity.x = 0
     player2.velocity.x = 0
-
     
     //Player 1 movement
     if(keys.a.pressed && player1.lastKey === `a` && player1.canMove){
@@ -290,6 +303,7 @@ function animate() {
         player2.direction = 1
         if(isOnGround(player2)){ player2.switchSprite(`run`) }
     } else if (isOnGround(player2)){
+
         if(player2.direction === -1){
             player2.switchSprite(`idle-inverted`)
         } else {
@@ -305,23 +319,45 @@ function animate() {
         }
     }
 
-    //Detect for collision
+    // ================================   Detect for collision     ===================================
+
+    //PLAYER 1 COLLISION
     if (
         rectangularCollision({
             rectangle1: player1,
             rectangle2: player2
         }) && 
-        player1.isAttacking && player1.framesCurrent === 4 && !player2.strikedFirst
+        player1.isAttacking && player1.framesCurrent === 4 && !player2.strikedFirst && player2.health > 0
         ) {
+
             player1.strikedFirst = true
             player2.strikedFirst = false
             player2.takeHit()
+            if(player2.health === 0){
+                document.getElementById('winning-result').style.display = 'block'
+                document.getElementById('winner').innerHTML = characterP1.toUpperCase()
+                setTimeout(() => {
+                    document.querySelector('nav').style.display = 'flex'
+                    document.querySelector('.match-result').style.background = 'black'
+                    setTimeout(() => {
+                       const buttons = document.querySelectorAll('#button')
+                       buttons[0].style.opacity = 1
+                       buttons[1].style.opacity = 1
+                    }, 1500);
+                }, 1000);
+            }
             player1.isAttacking = false
             player2.color = `yellow`
             document.querySelector(`.health-quantity-P2`).style.width = player2.health + `%`
             setTimeout(() => {
                 document.querySelector(`.lose-health-P2`).style.width = player2.health + `%`
             }, 1000);
+
+            const healthBar = document.querySelector('.player2-info')
+            healthBar.classList.add('tremer')
+            setTimeout(()=>{
+                healthBar.classList.remove('tremer')
+            },500)
     } else {
         player2.color = `blue`
     }
@@ -330,23 +366,42 @@ function animate() {
         player1.isAttacking = false
     }
 
-
+    //PLAYER 2 COLLISION
     if (
         rectangularCollision({
             rectangle1: player2,
             rectangle2: player1
         }) && 
-        player2.isAttacking && player2.framesCurrent === 4 && !player1.strikedFirst
+        player2.isAttacking && player2.framesCurrent === 4 && !player1.strikedFirst && player1.health > 0
         ) {
             player2.strikedFirst = true
             player1.strikedFirst = false
             player1.takeHit()
+            if(player1.health === 0){
+                document.getElementById('winning-result').style.display = 'block'
+                document.getElementById('winner').innerHTML = characterP2.toUpperCase()
+                setTimeout(() => {
+                    document.querySelector('nav').style.display = 'flex'
+                    document.querySelector('.match-result').style.background = 'black'
+                    setTimeout(() => {
+                       const buttons = document.querySelectorAll('#button')
+                       buttons[0].style.opacity = 1
+                       buttons[1].style.opacity = 1
+                    }, 1500);
+                }, 1000);
+            }
             player2.isAttacking = false 
             player1.color = `yellow`
             document.querySelector(`.health-quantity-P1`).style.width = player1.health + `%`
             setTimeout(() => {
                 document.querySelector(`.lose-health-P1`).style.width = player1.health + `%`
             }, 1000);
+
+            const healthBar = document.querySelector('.player1-info')
+            healthBar.classList.add('tremer')
+            setTimeout(()=>{
+                healthBar.classList.remove('tremer')
+            },500)
     } else {
         player1.color = `red`
     }
@@ -356,17 +411,19 @@ function animate() {
     }
 
     //Orientation collision change
-
+    //If player1 is on left
     if(player1.position.x + player1.width <= player2.position.x + player2.width){
         player1.attackBox.offset.x = 80
     } else {
-        player1.attackBox.offset.x = -170
+        player1.attackBox.offset.x = -180
     }
+    //If player1 is on right
     if(player1.position.x + player1.width >= player2.position.x + player2.width){
         player2.attackBox.offset.x = 80
     } else {
-        player2.attackBox.offset.x = -170
+        player2.attackBox.offset.x = -180
     }
+    
 }
 
 animate()
@@ -388,12 +445,26 @@ window.addEventListener(`keydown`, (event) =>{
             keys.d.pressed = true
             player1.lastKey = `d`
             break
+        case `D`:
+            keys.d.pressed = true
+            player1.lastKey = `d`
+            break
         case `a`:
             keys.a.pressed = true
             player1.lastKey = `a`
             break
+        case `A`:
+            keys.a.pressed = true
+            player1.lastKey = `a`
+            break
         case `w`:
-            if(player1.jumps>0){
+            if(player1.jumps>0 && player1.canMove){
+                player1.velocity.y = jumpHeight
+                player1.jumps--
+            }
+            break
+        case `W`:
+            if(player1.jumps>0 && player1.canMove){
                 player1.velocity.y = jumpHeight
                 player1.jumps--
             }
@@ -424,7 +495,7 @@ window.addEventListener(`keydown`, (event) =>{
                     player2.jumps--
                 }
                 break
-            case `Enter`:
+            case `.`:
                 if(player2.canAttack && player2.canMove && !player1.strikedFirst){
                     player2.attack()
                     if(player1.position.x + player1.width >= player2.position.x + player2.width) {
@@ -444,7 +515,13 @@ window.addEventListener(`keyup`, (event) =>{
         case `d`:
             keys.d.pressed = false
             break
+        case `D`:
+            keys.d.pressed = false
+            break
         case `a`:
+            keys.a.pressed = false
+            break
+        case `A`:
             keys.a.pressed = false
             break
 

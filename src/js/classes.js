@@ -62,6 +62,14 @@ class Sprite {
     }
 
     animateFrames(){
+
+        if (this.image === this.sprites.fall.image) {
+            if (this.framesCurrent >= this.sprites.fall.framesMax - 1) {
+                // Aqui, ao atingir o último quadro, você pode interromper a animação.
+                return;
+
+            }
+        }
         this.framesElapsed++
 
         if(this.framesElapsed % this.framesHold === 0) {
@@ -93,7 +101,8 @@ class Character extends Sprite {
         direction,
         canAttack = true,
         canMove = true,
-        strikedFirst
+        strikedFirst,
+        gotHit = false
     }){
         super({
             position,
@@ -128,6 +137,9 @@ class Character extends Sprite {
         this.canAttack = canAttack
         this.canMove = canMove
         this.strikedFirst = strikedFirst
+        this.gotHit = gotHit
+        
+        
 
 
         for (const sprite in this.sprites){
@@ -161,11 +173,19 @@ class Character extends Sprite {
             this.position.x = canvas.width - this.width
         }
 
+        if(this.health === 0){
+            this.switchSprite('fall')
+            this.canMove = false
+
+        }
+        
+        
     }
+    
 
     attack() {
         this.isAttacking = true
-        this.strikedFirst = true
+        // this.strikedFirst = true
 
         this.canAttack = false
 
@@ -175,20 +195,25 @@ class Character extends Sprite {
     }
 
     takeHit(){
-        this.switchSprite('take-hit')
-        this.canMove = false
         if(this.health > 0){
+            this.gotHit = true
+            this.isAttacking = false
+            this.switchSprite('take-hit')
+            this.canMove = false
             this.health -= 4
         }
     }
     
     switchSprite(sprite) {
-        //overriding all other animations with the attack animation
-        if (this.image === this.sprites.attack.image && this.framesCurrent < this.sprites.attack.framesMax - 1  || this.image === this.sprites.attackInverted.image && this.framesCurrent < this.sprites.attackInverted.framesMax - 1) {
+        if(this.image === this.sprites.fall.image && this.framesCurrent < this.sprites.fall.framesMax){
             return
         }
         //override when character gets hit
         if(this.image === this.sprites.takeHit.image && this.framesCurrent < this.sprites.takeHit.framesMax - 1){
+            return
+        }
+        //overriding all other animations with the attack animation
+        if (this.image === this.sprites.attack.image && this.framesCurrent < this.sprites.attack.framesMax - 1  && this.gotHit === false || this.image === this.sprites.attackInverted.image && this.framesCurrent < this.sprites.attackInverted.framesMax - 1 && this.gotHit === false ) {
             return
         }
 
@@ -200,6 +225,7 @@ class Character extends Sprite {
                     this.strikedFirst = false
                     this.canAttack = true
                     this.canMove = true
+                    this.gotHit = false
                     this.image = this.sprites.idle.image
                     this.framesMax = this.sprites.idle.framesMax
                     this.framesCurrent = 0
@@ -213,6 +239,7 @@ class Character extends Sprite {
                     this.strikedFirst = false
                     this.canAttack = true
                     this.canMove = true
+                    this.gotHit = false
                     this.image = this.sprites.idleInverted.image
                     this.framesMax = this.sprites.idleInverted.framesMax
                     this.framesCurrent = 0
@@ -248,6 +275,7 @@ class Character extends Sprite {
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.jump.framesHold
                     this.scale = this.sprites.jump.scale
+                    this.offset.y = this.sprites.jump.offset.y
                 }
                 break;
             case 'jump-inverted':
@@ -257,6 +285,7 @@ class Character extends Sprite {
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.jumpInverted.framesHold
                     this.scale = this.sprites.jumpInverted.scale
+                    this.offset.y = this.sprites.jumpInverted.offset.y
                 }
                 break;
             case 'attack':
@@ -288,6 +317,17 @@ class Character extends Sprite {
                     this.framesHold = this.sprites.takeHit.framesHold
                     this.scale = this.sprites.takeHit.scale
                     this.offset.y = this.sprites.takeHit.offset.y
+                }
+                break;
+            case 'fall':
+                if(this.image !== this.sprites.fall.image){
+                    this.canAttack = false
+                    this.image = this.sprites.fall.image
+                    this.framesMax = this.sprites.fall.framesMax
+                    this.framesCurrent = 0
+                    this.framesHold = this.sprites.fall.framesHold
+                    this.scale = this.sprites.fall.scale
+                    this.offset.y = this.sprites.fall.offset.y
                 }
                 break;
         }

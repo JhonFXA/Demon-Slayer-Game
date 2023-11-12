@@ -43,7 +43,10 @@ const characterDefaultSettings = {
         jumpInverted: {
             framesMax: 2,
             framesHold: 10,
-            scale: 3
+            scale: 3,
+            offset: {
+                y: 0
+            }
         },
         attack: {
             framesMax: 8,
@@ -63,6 +66,14 @@ const characterDefaultSettings = {
         },
         takeHit: {
             framesMax: 5,
+            framesHold: 5,
+            scale: 3,
+            offset: {
+                y: 0
+            }
+        },
+        fall: {
+            framesMax: 10,
             framesHold: 5,
             scale: 3,
             offset: {
@@ -109,7 +120,7 @@ const characterDefaultSettings = {
             framesHold: 10,
             scale: 2.9,
             offset: {
-                y: 0
+                y: 10
             }
         },
         jumpInverted: {
@@ -117,7 +128,7 @@ const characterDefaultSettings = {
             framesHold: 10,
             scale: 2.9,
             offset: {
-                y: 0
+                y: 10
             }
         },
         attack: {
@@ -142,6 +153,14 @@ const characterDefaultSettings = {
             scale: 2.9,
             offset: {
                 y: -5
+            }
+        },
+        fall: {
+            framesMax: 10,
+            framesHold: 5,
+            scale: 3,
+            offset: {
+                y: 0
             }
         }
     }
