@@ -115,7 +115,7 @@ class Character extends Sprite {
         this.width = 80
         this.height = 150
         this.lastKey
-        this.movSpeed = 12
+        this.movSpeed = 8
         this.jumps = 2
         this.attackBox = {
             position: {
