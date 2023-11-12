@@ -4,14 +4,49 @@ const characters = [{
 },
 {
     name: 'Agatsuma Zenitsu',
-    id: 'zenitsu'
+    id: 'zenitsu',
+},
+{
+    name: 'Hashibira Inosuke',
+    id: 'inosuke',
+    status: 'blocked' 
+},
+{
+    name: 'Kamado Nezuko',
+    id: 'nezuko',
+    status: 'blocked' 
+},
+{
+    name: 'Giyu Tomioka',
+    id: 'tomioka',
+    status: 'blocked' 
+},
+{
+    name: 'Kocho Shinobu',
+    id: 'shinobu',
+    status: 'blocked' 
+},
+{
+    name: 'Tsuyuri Kanao',
+    id: 'kanao',
+    status: 'blocked' 
+},
+{
+    name: 'Kyojuro Rengoku',
+    id: 'rengoku',
+    status: 'blocked' 
+},
+{
+    name: 'Akaza',
+    id: 'akaza',
+    status: 'blocked' 
 }]
 
 characters.forEach( character =>{
     const characterLists = document.querySelectorAll('.character-list')
     characterLists.forEach( characterList => {
         const li = document.createElement('li')
-        li.className = 'character'
+        li.className = `character`
         li.id = character.id
         li.setAttribute('data-name', character.name)
     
@@ -40,7 +75,13 @@ charactersPlayer1.forEach((character) => {
         const idSelected = character.attributes.id.value
 
         const imagePlayer1 = document.getElementById('character-player-1')
-        imagePlayer1.src = `../src/imagens/${idSelected}.png`
+        if(idSelected === 'tanjiro' || idSelected === 'zenitsu'){
+            imagePlayer1.src = `../src/imagens/${idSelected}.png`
+            imagePlayer1.className = ''
+        } else {
+            imagePlayer1.src = `../src/imagens/${idSelected}-locked.png`
+            imagePlayer1.className = 'blocked'
+        }
 
         const player1Name = document.getElementById('character-name-1')
         const selectedName = character.getAttribute('data-name')
@@ -58,7 +99,13 @@ charactersPlayer2.forEach((character) => {
         const idSelected = character.attributes.id.value
 
         const imagePlayer2 = document.getElementById('character-player-2')
-        imagePlayer2.src = `../src/imagens/${idSelected}.png`
+        if(idSelected === 'tanjiro' || idSelected === 'zenitsu'){
+            imagePlayer2.src = `../src/imagens/${idSelected}.png`
+            imagePlayer2.className = ''
+        } else {
+            imagePlayer2.src = `../src/imagens/${idSelected}-locked.png`
+            imagePlayer2.className = 'blocked'
+        }
 
         const player2Name = document.getElementById('character-name-2')
         const selectedName = character.getAttribute('data-name')
@@ -67,13 +114,25 @@ charactersPlayer2.forEach((character) => {
     })
 })
 
+const startButton = document.getElementById('start-button')
+startButton.addEventListener('click',()=>{
+    const imageP1 = document.getElementById('character-player-1')
+    const imageP2 = document.getElementById('character-player-2')
+    
+    if(imageP1.classList.contains('blocked')||imageP2.classList.contains('blocked')){
+        window.alert('Os personagens bloqueados serão adicionados futuramente!')
+    } else {
+        const characterSelectedP1 = document.querySelector('.player-1-selected')
+        const characterSelectedP2 = document.querySelector('.player-2-selected')
+        const characterNameP1 = document.getElementById('character-name-1')
+        const characterNameP2 = document.getElementById('character-name-2')
+    
+    
+        localStorage.setItem('character-P1', characterSelectedP1.attributes.id.value)
+        localStorage.setItem('character-P2', characterSelectedP2.attributes.id.value)
+        localStorage.setItem('name-P1', characterNameP1.innerText)
+        localStorage.setItem('name-P2', characterNameP2.innerText)
 
-
-
-
-
-
-
-
-
-
+        window.location.href = "../html/game.html"
+    }
+})

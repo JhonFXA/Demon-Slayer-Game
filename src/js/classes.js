@@ -106,7 +106,7 @@ class Character extends Sprite {
         this.width = 80
         this.height = 150
         this.lastKey
-        this.movSpeed = 8
+        this.movSpeed = 12
         this.jumps = 2
         this.attackBox = {
             position: {
@@ -265,6 +265,8 @@ class Character extends Sprite {
                     this.framesMax = this.sprites.attack.framesMax
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.attack.framesHold
+                    this.scale = this.sprites.attack.scale
+                    this.offset.y = this.sprites.attack.offset.y
                 }
                 break;
             case 'attack-inverted':
@@ -273,6 +275,8 @@ class Character extends Sprite {
                     this.framesMax = this.sprites.attackInverted.framesMax
                     this.framesCurrent = 0
                     this.framesHold = this.sprites.attackInverted.framesHold
+                    this.scale = this.sprites.attackInverted.scale
+                    this.offset.y = this.sprites.attackInverted.offset.y
                 }
                 break;
             case 'take-hit':

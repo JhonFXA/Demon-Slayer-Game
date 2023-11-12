@@ -1,5 +1,4 @@
 body {
-    font-family: 'demon', Courier, monospace;
     background: var(--secondary-color);
 }
 
@@ -21,27 +20,11 @@ main {
     justify-content: center;
 }
 
-.button {
+.back-button img {
     position: absolute;
-    top: 0;
-    left: 0;
-    text-decoration: none;
-    display: block;
-    background-color: rgb(15, 15, 15);
-    color: rgb(255, 255, 255);
-    height: 40px;
-    width: 80px;
-    text-align: center;
-    font-size: 20px;
-    border: solid rgb(255, 0, 0);
-    margin: 10px;
-}
-
-.button:hover {
-    animation: c-glowing-red .5s ease-in-out infinite;
-    animation-direction: alternate;
-    transform: scale(1.09);
-    transition: 0.3s;
+    top: 10px;
+    left: 10px;
+    height: 50px;
 }
 
 header {
@@ -56,12 +39,14 @@ header h1 {
     color: var(--title-color);
     font-size: 3rem;
     text-shadow: 5px 0 5px black;
+    font-family: 'demon', Courier, monospace;
 }
 
 .character-select {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    font-family: 'demon', Courier, monospace;
 }
 
 .character-select .character-large {
@@ -86,6 +71,7 @@ header h1 {
     left: 50%;
     top: 50%;
     animation: float 5s ease-in-out infinite;
+    z-index: -1;
 }
 
 section {
@@ -100,6 +86,24 @@ section {
     height: 300px;
     animation: scale 2s ease-in-out infinite;
     z-index: 1;
+
+}
+
+.start-button {
+    margin-top: 400px;
+    background-image: radial-gradient(rgb(43, 43, 26), rgb(43, 43, 26));
+    color: #fff;
+    width: 300px;
+    height: 50px;
+    font-size: 30px;
+    border: groove 4px rgb(190, 153, 93);
+    cursor: pointer;
+    transition: ease 0.5s;
+}
+
+.start-button:hover {
+    background-image: radial-gradient(rgb(252, 214, 0), rgb(165, 117, 44));
+    color: #000;
 }
 
 
@@ -115,14 +119,44 @@ section {
 .character-select .character-list {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    overflow-y: auto;
     max-width: 300px;
     height: 500px;
     justify-content: start;
     align-items: start;
     gap: 12px;
     position: absolute;
+    padding: 10px;
+    background-color: #00000046;
 }
+
+.character-select .character-list.player-1 {
+    transform: scaleX(-1);
+}
+.character-select .character-list.player-1 img {
+    transform: scaleX(-1);
+}
+
+.character-select .character-list::-webkit-scrollbar {
+    width: 15px;
+}
+
+
+.character-select .character-list.player-1::-webkit-scrollbar-thumb {
+    background-color: #000ecc;
+    border-radius: 5px;
+}
+
+.character-select .character-list.player-2::-webkit-scrollbar-thumb {
+    background-color: #df0000;
+    border-radius: 5px;
+}
+
+.character-select .character-list::-webkit-scrollbar-track {
+    background-color: #000000;
+}
+
 
 .character-select .character-list.player-1 {
     left: 20px;
