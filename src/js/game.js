@@ -6,8 +6,8 @@ canvas.height = window.innerHeight
 
 context.fillRect(0,0,canvas.width,canvas.height)
 
-const gravity = 0.7
-const jumpHeight = -15
+const gravity = 0.35
+const jumpHeight = -12
 
 const background = new SpriteScenery({
     position: {
@@ -327,11 +327,8 @@ function animate() {
             rectangle1: player1,
             rectangle2: player2
         }) && 
-        player1.isAttacking && player1.framesCurrent === 4 && !player2.strikedFirst && player2.health > 0
+        player1.isAttacking && player1.framesCurrent === 4 && player2.health > 0
         ) {
-
-            player1.strikedFirst = true
-            player2.strikedFirst = false
             player2.takeHit()
             if(player2.health === 0){
                 document.getElementById('winning-result').style.display = 'block'
@@ -372,10 +369,8 @@ function animate() {
             rectangle1: player2,
             rectangle2: player1
         }) && 
-        player2.isAttacking && player2.framesCurrent === 4 && !player1.strikedFirst && player1.health > 0
+        player2.isAttacking && player2.framesCurrent === 4 && player1.health > 0
         ) {
-            player2.strikedFirst = true
-            player1.strikedFirst = false
             player1.takeHit()
             if(player1.health === 0){
                 document.getElementById('winning-result').style.display = 'block'
@@ -431,11 +426,11 @@ animate()
 
 
 let controlSwitch = 0
-window.addEventListener(`keydown`, (event) =>{
+
+window.addEventListener('keydown', (event) =>{
 
     //Player 1 keys
     switch (event.key) {
-
         case `Control`:
             keys.Control.pressed = true
             controlSwitch++
@@ -469,16 +464,6 @@ window.addEventListener(`keydown`, (event) =>{
                 player1.jumps--
             }
             break
-        case ` `:
-            if(player1.canAttack && player1.canMove && !player2.strikedFirst){
-                player1.attack()
-                if(player1.position.x + player1.width <= player2.position.x + player2.width) {
-                    player1.switchSprite(`attack`)
-                } else {
-                    player1.switchSprite(`attack-inverted`)
-                }
-            }
-            break
 
     //Player 2 keys
         case `ArrowRight`:
@@ -489,14 +474,36 @@ window.addEventListener(`keydown`, (event) =>{
             keys.ArrowLeft.pressed = true
             player2.lastKey = `ArrowLeft`
             break
-            case `ArrowUp`:
-                if(player2.jumps>0 && player2.canMove){
-                    player2.velocity.y = jumpHeight
-                    player2.jumps--
+        case `ArrowUp`:
+            if(player2.jumps>0 && player2.canMove){
+                player2.velocity.y = jumpHeight
+                player2.jumps--
+            }
+            break
+    }
+})
+
+
+window.addEventListener('keyup', (event) =>{
+
+    switch (event.key) {
+    //Player 1 keys
+        case ` `:
+            if(player1.canAttack && player1.canMove){
+                player1.attack()
+                if(player1.position.x + player1.width <= player2.position.x + player2.width) {
+                    player1.switchSprite(`attack`)
+                } else {
+                    player1.switchSprite(`attack-inverted`)
                 }
+            }
+            break
+            case 'q':
                 break
-            case `.`:
-                if(player2.canAttack && player2.canMove && !player1.strikedFirst){
+
+    //Player 2 keys
+            case `3`:
+                if(player2.canAttack && player2.canMove){
                     player2.attack()
                     if(player1.position.x + player1.width >= player2.position.x + player2.width) {
                         player2.switchSprite(`attack`)
@@ -505,8 +512,6 @@ window.addEventListener(`keydown`, (event) =>{
                     }
                 }
                 break
-
-
         }
 })
 window.addEventListener(`keyup`, (event) =>{

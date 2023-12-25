@@ -101,7 +101,6 @@ class Character extends Sprite {
         direction,
         canAttack = true,
         canMove = true,
-        strikedFirst,
         gotHit = false
     }){
         super({
@@ -115,7 +114,7 @@ class Character extends Sprite {
         this.width = 80
         this.height = 150
         this.lastKey
-        this.movSpeed = 8
+        this.movSpeed = 7
         this.jumps = 2
         this.attackBox = {
             position: {
@@ -136,7 +135,6 @@ class Character extends Sprite {
         this.direction = direction
         this.canAttack = canAttack
         this.canMove = canMove
-        this.strikedFirst = strikedFirst
         this.gotHit = gotHit
         
         
@@ -185,10 +183,7 @@ class Character extends Sprite {
 
     attack() {
         this.isAttacking = true
-        // this.strikedFirst = true
-
         this.canAttack = false
-
         setTimeout(()=>{
             this.canAttack = true
         },700)
@@ -222,7 +217,6 @@ class Character extends Sprite {
         switch(sprite) {
             case 'idle':
                 if(this.image !== this.sprites.idle.image){
-                    this.strikedFirst = false
                     this.canAttack = true
                     this.canMove = true
                     this.gotHit = false
@@ -236,7 +230,6 @@ class Character extends Sprite {
                 break;
             case 'idle-inverted':
                 if(this.image !== this.sprites.idleInverted.image){
-                    this.strikedFirst = false
                     this.canAttack = true
                     this.canMove = true
                     this.gotHit = false
@@ -250,6 +243,8 @@ class Character extends Sprite {
                 break;
             case 'run':
                 if(this.image !== this.sprites.run.image){
+                    this.canAttack = true
+                    this.canMove = true
                     this.image = this.sprites.run.image
                     this.framesMax = this.sprites.run.framesMax
                     this.framesCurrent = 0
@@ -260,6 +255,8 @@ class Character extends Sprite {
                 break;
             case 'run-inverted':
                 if(this.image !== this.sprites.runInverted.image){
+                    this.canAttack = true
+                    this.canMove = true
                     this.image = this.sprites.runInverted.image
                     this.framesMax = this.sprites.runInverted.framesMax
                     this.framesCurrent = 0

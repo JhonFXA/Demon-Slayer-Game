@@ -2,7 +2,7 @@ const characterDefaultSettings = {
     tanjiro: {
         idle: {
             framesMax: 8,
-            framesHold: 10,
+            framesHold: 20,
             scale: 3,
             offset: {
                 y: 0
@@ -10,7 +10,7 @@ const characterDefaultSettings = {
         },
         idleInverted: {
             framesMax: 8,
-            framesHold: 10,
+            framesHold: 20,
             scale: 3,
             offset: {
                 y: 0
@@ -34,7 +34,7 @@ const characterDefaultSettings = {
         },
         jump: {
             framesMax: 2,
-            framesHold: 10,
+            framesHold: 20,
             scale: 3,
             offset: {
                 y: 0
@@ -42,7 +42,7 @@ const characterDefaultSettings = {
         },
         jumpInverted: {
             framesMax: 2,
-            framesHold: 10,
+            framesHold: 20,
             scale: 3,
             offset: {
                 y: 0
@@ -50,7 +50,7 @@ const characterDefaultSettings = {
         },
         attack: {
             framesMax: 8,
-            framesHold: 5,
+            framesHold: 7,
             scale: 3,
             offset: {
                 y: 0
@@ -58,7 +58,7 @@ const characterDefaultSettings = {
         },
         attackInverted: {
             framesMax: 8,
-            framesHold: 5,
+            framesHold: 7,
             scale: 3,
             offset: {
                 y: 0
@@ -66,7 +66,7 @@ const characterDefaultSettings = {
         },
         takeHit: {
             framesMax: 5,
-            framesHold: 5,
+            framesHold: 10,
             scale: 3,
             offset: {
                 y: 0
@@ -74,7 +74,7 @@ const characterDefaultSettings = {
         },
         fall: {
             framesMax: 10,
-            framesHold: 5,
+            framesHold: 10,
             scale: 3,
             offset: {
                 y: 0
@@ -85,7 +85,7 @@ const characterDefaultSettings = {
     zenitsu: {
         idle: {
             framesMax: 8,
-            framesHold: 10,
+            framesHold: 20,
             scale: 2.9,
             offset: {
                 y: -5
@@ -93,7 +93,7 @@ const characterDefaultSettings = {
         },
         idleInverted: {
             framesMax: 8,
-            framesHold: 10,
+            framesHold: 20,
             scale: 2.9,
             offset: {
                 y: -5
@@ -133,7 +133,7 @@ const characterDefaultSettings = {
         },
         attack: {
             framesMax: 8,
-            framesHold: 5,
+            framesHold: 7,
             scale: 2.9,
             offset: {
                 y: -5
@@ -141,7 +141,7 @@ const characterDefaultSettings = {
         },
         attackInverted: {
             framesMax: 8,
-            framesHold: 5,
+            framesHold: 7,
             scale: 2.9,
             offset: {
                 y: -5
@@ -149,7 +149,7 @@ const characterDefaultSettings = {
         },
         takeHit: {
             framesMax: 5,
-            framesHold: 5,
+            framesHold: 10,
             scale: 2.9,
             offset: {
                 y: -5
@@ -157,7 +157,7 @@ const characterDefaultSettings = {
         },
         fall: {
             framesMax: 10,
-            framesHold: 5,
+            framesHold: 10,
             scale: 3,
             offset: {
                 y: 0
