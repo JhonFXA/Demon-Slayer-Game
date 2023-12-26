@@ -6,8 +6,9 @@ canvas.height = window.innerHeight
 
 context.fillRect(0,0,canvas.width,canvas.height)
 
-const gravity = 0.35
-const jumpHeight = -12
+const gravity = resolucao==='1280x720'? 0.6: 0.35
+const jumpHeight = resolucao==='1280x720'? -14: -12
+const speed = resolucao==='1280x720'? 10: 7
 
 const background = new SpriteScenery({
     position: {
@@ -114,6 +115,13 @@ const player1 = new Character({
             framesHold: characterDefaultSettings[characterP1].fall.framesHold,
             scale: characterDefaultSettings[characterP1].fall.scale,
             offset: characterDefaultSettings[characterP1].fall.offset
+        },
+        dash: {
+            imageSrc: `../src/imagens/game-assets/${characterP1}/${characterP1}-dash.png`,
+            framesMax: characterDefaultSettings[characterP1].dash.framesMax,
+            framesHold: characterDefaultSettings[characterP1].dash.framesHold,
+            scale: characterDefaultSettings[characterP1].dash.scale,
+            offset: characterDefaultSettings[characterP1].dash.offset
         }
     },
     attackBox: {
@@ -136,9 +144,6 @@ const player2 = new Character({
         x: 0,
         y: 0
     },
-    // imageSrc: `../src/imagens/game-assets/${characterP2}/${characterP2}-idle.png`,
-    // framesMax: 8,
-    // scale: 3,
     offset: {
         x: 300,
         y: 0
@@ -213,6 +218,13 @@ const player2 = new Character({
             framesHold: characterDefaultSettings[characterP2].fall.framesHold,
             scale: characterDefaultSettings[characterP2].fall.scale,
             offset: characterDefaultSettings[characterP2].fall.offset
+        },
+        dash: {
+            imageSrc: `../src/imagens/game-assets/${characterP2}/${characterP2}-dash.png`,
+            framesMax: characterDefaultSettings[characterP2].dash.framesMax,
+            framesHold: characterDefaultSettings[characterP2].dash.framesHold,
+            scale: characterDefaultSettings[characterP2].dash.scale,
+            offset: characterDefaultSettings[characterP2].dash.offset
         }
     },
     attackBox: {
@@ -230,6 +242,9 @@ const keys = {
         pressed: false
     },
     d: {
+        pressed: false,
+    },
+    space: {
         pressed: false
     },
     ArrowLeft: {
@@ -428,36 +443,64 @@ animate()
 let controlSwitch = 0
 
 window.addEventListener('keydown', (event) =>{
-
     //Player 1 keys
     switch (event.key) {
         case `Control`:
             keys.Control.pressed = true
             controlSwitch++
-        // // }
             break
+
         case `d`:
+            if(keys.d.pressed === false && player1.clickCount < 2) {
+                player1.clickCount++
+                setTimeout(() => {
+                    player1.clickCount = 0
+                }, 300);
+            }
             keys.d.pressed = true
             player1.lastKey = `d`
             break
+
         case `D`:
+            if(keys.d.pressed === false && player1.clickCount < 2) {
+                player1.clickCount++
+                setTimeout(() => {
+                    player1.clickCount = 0
+                }, 300);
+            }
             keys.d.pressed = true
             player1.lastKey = `d`
             break
+
         case `a`:
+            if(keys.a.pressed === false) {
+                player1.clickCount++
+                setTimeout(() => {
+                    player1.clickCount = 0
+                }, 300);
+            }
             keys.a.pressed = true
             player1.lastKey = `a`
             break
+
         case `A`:
+            if(keys.a.pressed === false) {
+                player1.clickCount++
+                setTimeout(() => {
+                    player1.clickCount = 0
+                }, 300);
+            }
             keys.a.pressed = true
             player1.lastKey = `a`
             break
+
         case `w`:
             if(player1.jumps>0 && player1.canMove){
                 player1.velocity.y = jumpHeight
                 player1.jumps--
             }
             break
+
         case `W`:
             if(player1.jumps>0 && player1.canMove){
                 player1.velocity.y = jumpHeight
@@ -465,12 +508,36 @@ window.addEventListener('keydown', (event) =>{
             }
             break
 
+        case ` `:
+            if(player1.canAttack && player1.canMove && keys.space.pressed === false){
+                player1.attack()
+                if(player1.position.x + player1.width <= player2.position.x + player2.width) {
+                    player1.switchSprite(`attack`)
+                } else {
+                    player1.switchSprite(`attack-inverted`)
+                }
+            }
+            keys.space.pressed = true
+        break
+
     //Player 2 keys
         case `ArrowRight`:
+            if(keys.ArrowRight.pressed === false) {
+                player2.clickCount++
+                setTimeout(() => {
+                    player2.clickCount = 0
+                }, 300);
+            }
             keys.ArrowRight.pressed = true
             player2.lastKey = `ArrowRight`
             break
         case `ArrowLeft`:
+            if(keys.ArrowLeft.pressed === false) {
+                player2.clickCount++
+                setTimeout(() => {
+                    player2.clickCount = 0
+                }, 300);
+            }
             keys.ArrowLeft.pressed = true
             player2.lastKey = `ArrowLeft`
             break
@@ -484,36 +551,6 @@ window.addEventListener('keydown', (event) =>{
 })
 
 
-window.addEventListener('keyup', (event) =>{
-
-    switch (event.key) {
-    //Player 1 keys
-        case ` `:
-            if(player1.canAttack && player1.canMove){
-                player1.attack()
-                if(player1.position.x + player1.width <= player2.position.x + player2.width) {
-                    player1.switchSprite(`attack`)
-                } else {
-                    player1.switchSprite(`attack-inverted`)
-                }
-            }
-            break
-            case 'q':
-                break
-
-    //Player 2 keys
-            case `3`:
-                if(player2.canAttack && player2.canMove){
-                    player2.attack()
-                    if(player1.position.x + player1.width >= player2.position.x + player2.width) {
-                        player2.switchSprite(`attack`)
-                    } else {
-                        player2.switchSprite(`attack-inverted`)
-                    }
-                }
-                break
-        }
-})
 window.addEventListener(`keyup`, (event) =>{
     switch (event.key) {
         //Player 1 keys
@@ -529,6 +566,8 @@ window.addEventListener(`keyup`, (event) =>{
         case `A`:
             keys.a.pressed = false
             break
+        case ' ':
+            keys.space.pressed = false
 
         //Player 2 keys
         case `ArrowRight`:
@@ -536,6 +575,16 @@ window.addEventListener(`keyup`, (event) =>{
             break
         case `ArrowLeft`:
             keys.ArrowLeft.pressed = false
+            break
+        case `3`:
+            if(player2.canAttack && player2.canMove){
+                player2.attack()
+                if(player1.position.x + player1.width >= player2.position.x + player2.width) {
+                    player2.switchSprite(`attack`)
+                } else {
+                    player2.switchSprite(`attack-inverted`)
+                }
+            }
             break
     }
 

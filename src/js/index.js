@@ -1,4 +1,6 @@
 function startGame(){
+    const select = document.getElementById("resolucao")
+    localStorage.setItem('resolucao', select.options[select.selectedIndex].value)
     window.location.href = "html/character-select.html"
 }
 

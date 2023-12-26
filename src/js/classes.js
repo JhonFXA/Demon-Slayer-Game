@@ -101,7 +101,9 @@ class Character extends Sprite {
         direction,
         canAttack = true,
         canMove = true,
-        gotHit = false
+        gotHit = false,
+        clickCount = 0,
+        
     }){
         super({
             position,
@@ -114,7 +116,7 @@ class Character extends Sprite {
         this.width = 80
         this.height = 150
         this.lastKey
-        this.movSpeed = 7
+        this.movSpeed = speed
         this.jumps = 2
         this.attackBox = {
             position: {
@@ -136,6 +138,7 @@ class Character extends Sprite {
         this.canAttack = canAttack
         this.canMove = canMove
         this.gotHit = gotHit
+        this.clickCount = clickCount
         
         
 
@@ -171,10 +174,27 @@ class Character extends Sprite {
             this.position.x = canvas.width - this.width
         }
 
+        // Defeat checker
         if(this.health === 0){
             this.switchSprite('fall')
             this.canMove = false
+        }
 
+
+
+        
+        
+        
+        if(this.clickCount === 2){
+            if(this.direction > 0){
+                this.position.x += 20
+                this.switchSprite('dash')
+            } else {
+                this.position.x -= 20
+            }
+            setTimeout(() => {
+                this.clickCount = 0
+            }, 300);
         }
         
         
@@ -200,6 +220,11 @@ class Character extends Sprite {
     }
     
     switchSprite(sprite) {
+        //overriding all other animations with the attack animation
+        if (this.image === this.sprites.attack.image && this.framesCurrent < this.sprites.attack.framesMax - 1  && this.gotHit === false || this.image === this.sprites.attackInverted.image && this.framesCurrent < this.sprites.attackInverted.framesMax - 1 && this.gotHit === false ) {
+            return
+        }
+        
         if(this.image === this.sprites.fall.image && this.framesCurrent < this.sprites.fall.framesMax){
             return
         }
@@ -207,11 +232,10 @@ class Character extends Sprite {
         if(this.image === this.sprites.takeHit.image && this.framesCurrent < this.sprites.takeHit.framesMax - 1){
             return
         }
-        //overriding all other animations with the attack animation
-        if (this.image === this.sprites.attack.image && this.framesCurrent < this.sprites.attack.framesMax - 1  && this.gotHit === false || this.image === this.sprites.attackInverted.image && this.framesCurrent < this.sprites.attackInverted.framesMax - 1 && this.gotHit === false ) {
+        
+        if(this.image === this.sprites.dash.image && this.framesCurrent < this.sprites.dash.framesMax - 1 && !this.isAttacking){
             return
         }
-
 
 
         switch(sprite) {
@@ -327,6 +351,13 @@ class Character extends Sprite {
                     this.offset.y = this.sprites.fall.offset.y
                 }
                 break;
+            case 'dash':
+                this.image = this.sprites.dash.image
+                this.framesMax = this.sprites.dash.framesMax
+                this.framesCurrent = 0
+                this.framesHold = this.sprites.dash.framesHold
+                this.scale = this.sprites.dash.scale
+                this.offset.y = this.sprites.dash.offset.y
         }
     }
 }

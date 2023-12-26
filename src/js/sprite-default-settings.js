@@ -1,8 +1,10 @@
+const resolucao = localStorage.getItem('resolucao')
+
 const characterDefaultSettings = {
     tanjiro: {
         idle: {
             framesMax: 8,
-            framesHold: 20,
+            framesHold: resolucao==='1280x720'? 10: 20,
             scale: 3,
             offset: {
                 y: 0
@@ -10,7 +12,7 @@ const characterDefaultSettings = {
         },
         idleInverted: {
             framesMax: 8,
-            framesHold: 20,
+            framesHold: resolucao==='1280x720'? 10: 20,
             scale: 3,
             offset: {
                 y: 0
@@ -18,7 +20,7 @@ const characterDefaultSettings = {
         },
         run: {
             framesMax: 8,
-            framesHold: 10,
+            framesHold: resolucao==='1280x720'? 5: 10,
             scale: 3,
             offset: {
                 y: 0
@@ -26,7 +28,7 @@ const characterDefaultSettings = {
         },
         runInverted: {
             framesMax: 8,
-            framesHold: 10,
+            framesHold: resolucao==='1280x720'? 5: 10,
             scale: 3,
             offset: {
                 y: 0
@@ -34,7 +36,7 @@ const characterDefaultSettings = {
         },
         jump: {
             framesMax: 2,
-            framesHold: 20,
+            framesHold: resolucao==='1280x720'? 5: 10,
             scale: 3,
             offset: {
                 y: 0
@@ -42,7 +44,7 @@ const characterDefaultSettings = {
         },
         jumpInverted: {
             framesMax: 2,
-            framesHold: 20,
+            framesHold: resolucao==='1280x720'? 5: 10,
             scale: 3,
             offset: {
                 y: 0
@@ -50,7 +52,7 @@ const characterDefaultSettings = {
         },
         attack: {
             framesMax: 8,
-            framesHold: 7,
+            framesHold: resolucao==='1280x720'? 5: 7,
             scale: 3,
             offset: {
                 y: 0
@@ -58,7 +60,7 @@ const characterDefaultSettings = {
         },
         attackInverted: {
             framesMax: 8,
-            framesHold: 7,
+            framesHold: resolucao==='1280x720'? 5: 7,
             scale: 3,
             offset: {
                 y: 0
@@ -66,7 +68,7 @@ const characterDefaultSettings = {
         },
         takeHit: {
             framesMax: 5,
-            framesHold: 10,
+            framesHold: resolucao==='1280x720'? 5: 10,
             scale: 3,
             offset: {
                 y: 0
@@ -74,7 +76,15 @@ const characterDefaultSettings = {
         },
         fall: {
             framesMax: 10,
-            framesHold: 10,
+            framesHold: resolucao==='1280x720'? 5: 10,
+            scale: 3,
+            offset: {
+                y: 0
+            }
+        },
+        dash: {
+            framesMax: 4,
+            framesHold: resolucao==='1280x720'? 5: 10,
             scale: 3,
             offset: {
                 y: 0
@@ -85,7 +95,7 @@ const characterDefaultSettings = {
     zenitsu: {
         idle: {
             framesMax: 8,
-            framesHold: 20,
+            framesHold: resolucao==='1280x720'? 10: 20,
             scale: 2.9,
             offset: {
                 y: -5
@@ -93,7 +103,7 @@ const characterDefaultSettings = {
         },
         idleInverted: {
             framesMax: 8,
-            framesHold: 20,
+            framesHold: resolucao==='1280x720'? 10: 20,
             scale: 2.9,
             offset: {
                 y: -5
@@ -101,7 +111,7 @@ const characterDefaultSettings = {
         },
         run: {
             framesMax: 4,
-            framesHold: 10,
+            framesHold: resolucao==='1280x720'? 10: 10,
             scale: 2.7,
             offset: {
                 y: -20
@@ -109,7 +119,7 @@ const characterDefaultSettings = {
         },
         runInverted: {
             framesMax: 4,
-            framesHold: 10,
+            framesHold: resolucao==='1280x720'? 10: 10,
             scale: 2.7,
             offset: {
                 y: -20
@@ -133,7 +143,7 @@ const characterDefaultSettings = {
         },
         attack: {
             framesMax: 8,
-            framesHold: 7,
+            framesHold: resolucao==='1280x720'? 4: 7,
             scale: 2.9,
             offset: {
                 y: -5
@@ -141,7 +151,7 @@ const characterDefaultSettings = {
         },
         attackInverted: {
             framesMax: 8,
-            framesHold: 7,
+            framesHold: resolucao==='1280x720'? 4: 7,
             scale: 2.9,
             offset: {
                 y: -5
@@ -149,7 +159,7 @@ const characterDefaultSettings = {
         },
         takeHit: {
             framesMax: 5,
-            framesHold: 10,
+            framesHold: resolucao==='1280x720'? 5: 10,
             scale: 2.9,
             offset: {
                 y: -5
@@ -157,7 +167,15 @@ const characterDefaultSettings = {
         },
         fall: {
             framesMax: 10,
-            framesHold: 10,
+            framesHold: resolucao==='1280x720'? 5: 10,
+            scale: 3,
+            offset: {
+                y: 0
+            }
+        },
+        dash: {
+            framesMax: 4,
+            framesHold: resolucao==='1280x720'? 5: 10,
             scale: 3,
             offset: {
                 y: 0
