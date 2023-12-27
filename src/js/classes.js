@@ -189,10 +189,10 @@ class Character extends Sprite {
         // Dash 
         if(this.leftClickCount === 2 || this.rightClickCount === 2){
             if(this.direction > 0){
-                this.position.x += 20
+                this.position.x += resolucao==='1280x720'? 20: 15
                 this.switchSprite('dash')
             } else {
-                this.position.x -= 20
+                this.position.x -= resolucao==='1280x720'? 20: 15
                 this.switchSprite('dash-inverted')
             }
             // setTimeout(() => {
