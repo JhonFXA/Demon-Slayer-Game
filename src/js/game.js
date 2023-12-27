@@ -438,15 +438,23 @@ function animate() {
     //Orientation collision change
     //If player1 is on left
     if(player1.position.x + player1.width <= player2.position.x + player2.width){
-        player1.attackBox.offset.x = 80
+        setTimeout(() => {
+            player1.attackBox.offset.x = 80
+        }, 300);
     } else {
-        player1.attackBox.offset.x = -180
+        setTimeout(() => {
+            player1.attackBox.offset.x = -180
+        }, 300);
     }
     //If player1 is on right
     if(player1.position.x + player1.width >= player2.position.x + player2.width){
-        player2.attackBox.offset.x = 80
+        setTimeout(() => {
+            player2.attackBox.offset.x = 80
+        }, 300);
     } else {
-        player2.attackBox.offset.x = -180
+        setTimeout(() => {
+            player2.attackBox.offset.x = -180
+        }, 300);
     }
     
 }
