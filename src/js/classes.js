@@ -102,7 +102,8 @@ class Character extends Sprite {
         canAttack = true,
         canMove = true,
         gotHit = false,
-        clickCount = 0,
+        leftClickCount = 0,
+        rightClickCount = 0
         
     }){
         super({
@@ -138,7 +139,8 @@ class Character extends Sprite {
         this.canAttack = canAttack
         this.canMove = canMove
         this.gotHit = gotHit
-        this.clickCount = clickCount
+        this.leftClickCount = leftClickCount
+        this.rightClickCount = rightClickCount
         
         
 
@@ -184,17 +186,19 @@ class Character extends Sprite {
 
         
         
-        
-        if(this.clickCount === 2){
+        // Dash 
+        if(this.leftClickCount === 2 || this.rightClickCount === 2){
             if(this.direction > 0){
                 this.position.x += 20
                 this.switchSprite('dash')
             } else {
                 this.position.x -= 20
+                this.switchSprite('dash-inverted')
             }
-            setTimeout(() => {
-                this.clickCount = 0
-            }, 300);
+            // setTimeout(() => {
+            //     this.leftClickCount = 0
+            //     this.rightClickCount = 0
+            // }, 300);
         }
         
         
@@ -225,6 +229,7 @@ class Character extends Sprite {
             return
         }
         
+        //overriding all other animations with the defeat animation
         if(this.image === this.sprites.fall.image && this.framesCurrent < this.sprites.fall.framesMax){
             return
         }
@@ -233,7 +238,8 @@ class Character extends Sprite {
             return
         }
         
-        if(this.image === this.sprites.dash.image && this.framesCurrent < this.sprites.dash.framesMax - 1 && !this.isAttacking){
+        //overriding all other animations with the dash animation
+        if(this.image === this.sprites.dash.image && this.framesCurrent < this.sprites.dash.framesMax - 1 && !this.isAttacking || this.image === this.sprites.dashInverted.image && this.framesCurrent < this.sprites.dashInverted.framesMax - 1 && !this.isAttacking){
             return
         }
 
@@ -251,7 +257,7 @@ class Character extends Sprite {
                     this.scale = this.sprites.idle.scale
                     this.offset.y = this.sprites.idle.offset.y
                 }
-                break;
+                break
             case 'idle-inverted':
                 if(this.image !== this.sprites.idleInverted.image){
                     this.canAttack = true
@@ -264,7 +270,7 @@ class Character extends Sprite {
                     this.scale = this.sprites.idleInverted.scale
                     this.offset.y = this.sprites.idleInverted.offset.y
                 }
-                break;
+                break
             case 'run':
                 if(this.image !== this.sprites.run.image){
                     this.canAttack = true
@@ -276,7 +282,7 @@ class Character extends Sprite {
                     this.scale = this.sprites.run.scale
                     this.offset.y = this.sprites.run.offset.y
                 }
-                break;
+                break
             case 'run-inverted':
                 if(this.image !== this.sprites.runInverted.image){
                     this.canAttack = true
@@ -288,7 +294,7 @@ class Character extends Sprite {
                     this.scale = this.sprites.runInverted.scale
                     this.offset.y = this.sprites.runInverted.offset.y
                 }
-                break;
+                break
             case 'jump':
                 if(this.image !== this.sprites.jump.image){
                     this.image = this.sprites.jump.image
@@ -298,7 +304,7 @@ class Character extends Sprite {
                     this.scale = this.sprites.jump.scale
                     this.offset.y = this.sprites.jump.offset.y
                 }
-                break;
+                break
             case 'jump-inverted':
                 if(this.image !== this.sprites.jumpInverted.image){
                     this.image = this.sprites.jumpInverted.image
@@ -308,7 +314,7 @@ class Character extends Sprite {
                     this.scale = this.sprites.jumpInverted.scale
                     this.offset.y = this.sprites.jumpInverted.offset.y
                 }
-                break;
+                break
             case 'attack':
                 if(this.image !== this.sprites.attack.image){
                     this.image = this.sprites.attack.image
@@ -318,7 +324,7 @@ class Character extends Sprite {
                     this.scale = this.sprites.attack.scale
                     this.offset.y = this.sprites.attack.offset.y
                 }
-                break;
+                break
             case 'attack-inverted':
                 if(this.image !== this.sprites.attackInverted.image){
                     this.image = this.sprites.attackInverted.image
@@ -328,7 +334,7 @@ class Character extends Sprite {
                     this.scale = this.sprites.attackInverted.scale
                     this.offset.y = this.sprites.attackInverted.offset.y
                 }
-                break;
+                break
             case 'take-hit':
                 if(this.image !== this.sprites.takeHit.image){
                     this.canAttack = false
@@ -339,7 +345,7 @@ class Character extends Sprite {
                     this.scale = this.sprites.takeHit.scale
                     this.offset.y = this.sprites.takeHit.offset.y
                 }
-                break;
+                break
             case 'fall':
                 if(this.image !== this.sprites.fall.image){
                     this.canAttack = false
@@ -350,7 +356,7 @@ class Character extends Sprite {
                     this.scale = this.sprites.fall.scale
                     this.offset.y = this.sprites.fall.offset.y
                 }
-                break;
+                break
             case 'dash':
                 this.image = this.sprites.dash.image
                 this.framesMax = this.sprites.dash.framesMax
@@ -358,6 +364,15 @@ class Character extends Sprite {
                 this.framesHold = this.sprites.dash.framesHold
                 this.scale = this.sprites.dash.scale
                 this.offset.y = this.sprites.dash.offset.y
+                break
+            case 'dash-inverted':
+                this.image = this.sprites.dashInverted.image
+                this.framesMax = this.sprites.dashInverted.framesMax
+                this.framesCurrent = 0
+                this.framesHold = this.sprites.dashInverted.framesHold
+                this.scale = this.sprites.dashInverted.scale
+                this.offset.y = this.sprites.dashInverted.offset.y
+                break
         }
     }
 }

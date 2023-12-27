@@ -1,4 +1,8 @@
-/* Estilos para as divs */
+body {
+    background-image: linear-gradient(rgb(31, 27, 39), rgb(44, 44, 165), rgb(183, 0, 255));
+}
+
+
 .container {
     display: flex;
     height: 100vh;
@@ -17,12 +21,30 @@
 }
 
 .menu {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     flex: 1;
-    background-image: linear-gradient(rgb(31, 27, 39), rgb(44, 44, 165), rgb(183, 0, 255));
+}
+
+form {
+    position: absolute;
+    margin: 10px 10px 0 0;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+    text-align: center;
+}
+
+form label {
+    color: white;
+    display: block;
+}
+
+select {
+    font-size: 25px;
 }
 
 .logo {

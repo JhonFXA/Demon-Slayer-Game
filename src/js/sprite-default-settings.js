@@ -89,6 +89,14 @@ const characterDefaultSettings = {
             offset: {
                 y: 0
             }
+        },
+        dashInverted: {
+            framesMax: 4,
+            framesHold: resolucao==='1280x720'? 5: 10,
+            scale: 3,
+            offset: {
+                y: 0
+            }
         }
     },
 
@@ -174,7 +182,15 @@ const characterDefaultSettings = {
             }
         },
         dash: {
-            framesMax: 4,
+            framesMax: 5,
+            framesHold: resolucao==='1280x720'? 5: 10,
+            scale: 3,
+            offset: {
+                y: 0
+            }
+        },
+        dashInverted: {
+            framesMax: 5,
             framesHold: resolucao==='1280x720'? 5: 10,
             scale: 3,
             offset: {

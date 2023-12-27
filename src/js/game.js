@@ -39,8 +39,6 @@ const player1 = new Character({
         x: 0,
         y: 0
     },
-    // imageSrc: `../src/imagens/game-assets/${characterP1}/${characterP1}-idle.png`,
-    // scale: 3,
     offset: {
         x: 300,
         y: 0
@@ -122,6 +120,13 @@ const player1 = new Character({
             framesHold: characterDefaultSettings[characterP1].dash.framesHold,
             scale: characterDefaultSettings[characterP1].dash.scale,
             offset: characterDefaultSettings[characterP1].dash.offset
+        },
+        dashInverted: {
+            imageSrc: `../src/imagens/game-assets/${characterP1}/${characterP1}-dash-inverted.png`,
+            framesMax: characterDefaultSettings[characterP1].dashInverted.framesMax,
+            framesHold: characterDefaultSettings[characterP1].dashInverted.framesHold,
+            scale: characterDefaultSettings[characterP1].dashInverted.scale,
+            offset: characterDefaultSettings[characterP1].dashInverted.offset
         }
     },
     attackBox: {
@@ -225,6 +230,13 @@ const player2 = new Character({
             framesHold: characterDefaultSettings[characterP2].dash.framesHold,
             scale: characterDefaultSettings[characterP2].dash.scale,
             offset: characterDefaultSettings[characterP2].dash.offset
+        },
+        dashInverted: {
+            imageSrc: `../src/imagens/game-assets/${characterP2}/${characterP2}-dash-inverted.png`,
+            framesMax: characterDefaultSettings[characterP2].dashInverted.framesMax,
+            framesHold: characterDefaultSettings[characterP2].dashInverted.framesHold,
+            scale: characterDefaultSettings[characterP2].dashInverted.scale,
+            offset: characterDefaultSettings[characterP2].dashInverted.offset
         }
     },
     attackBox: {
@@ -251,6 +263,9 @@ const keys = {
         pressed: false
     },
     ArrowRight: {
+        pressed: false
+    },
+    three: {
         pressed: false
     },
     Control: {
@@ -451,10 +466,10 @@ window.addEventListener('keydown', (event) =>{
             break
 
         case `d`:
-            if(keys.d.pressed === false && player1.clickCount < 2) {
-                player1.clickCount++
+            if(keys.d.pressed === false) {
+                player1.rightClickCount++
                 setTimeout(() => {
-                    player1.clickCount = 0
+                    player1.rightClickCount = 0
                 }, 300);
             }
             keys.d.pressed = true
@@ -462,10 +477,10 @@ window.addEventListener('keydown', (event) =>{
             break
 
         case `D`:
-            if(keys.d.pressed === false && player1.clickCount < 2) {
-                player1.clickCount++
+            if(keys.d.pressed === false) {
+                player1.rightClickCount++
                 setTimeout(() => {
-                    player1.clickCount = 0
+                    player1.rightClickCount = 0
                 }, 300);
             }
             keys.d.pressed = true
@@ -474,9 +489,9 @@ window.addEventListener('keydown', (event) =>{
 
         case `a`:
             if(keys.a.pressed === false) {
-                player1.clickCount++
+                player1.leftClickCount++
                 setTimeout(() => {
-                    player1.clickCount = 0
+                    player1.leftClickCount = 0
                 }, 300);
             }
             keys.a.pressed = true
@@ -485,9 +500,9 @@ window.addEventListener('keydown', (event) =>{
 
         case `A`:
             if(keys.a.pressed === false) {
-                player1.clickCount++
+                player1.leftClickCount++
                 setTimeout(() => {
-                    player1.clickCount = 0
+                    player1.leftClickCount = 0
                 }, 300);
             }
             keys.a.pressed = true
@@ -523,29 +538,43 @@ window.addEventListener('keydown', (event) =>{
     //Player 2 keys
         case `ArrowRight`:
             if(keys.ArrowRight.pressed === false) {
-                player2.clickCount++
+                player2.rightClickCount++
                 setTimeout(() => {
-                    player2.clickCount = 0
+                    player2.rightClickCount = 0
                 }, 300);
             }
             keys.ArrowRight.pressed = true
             player2.lastKey = `ArrowRight`
             break
+
         case `ArrowLeft`:
             if(keys.ArrowLeft.pressed === false) {
-                player2.clickCount++
+                player2.leftClickCount++
                 setTimeout(() => {
-                    player2.clickCount = 0
+                    player2.leftClickCount = 0
                 }, 300);
             }
             keys.ArrowLeft.pressed = true
             player2.lastKey = `ArrowLeft`
             break
+
         case `ArrowUp`:
             if(player2.jumps>0 && player2.canMove){
                 player2.velocity.y = jumpHeight
                 player2.jumps--
             }
+            break
+
+        case `3`:
+            if(player2.canAttack && player2.canMove && keys.three.pressed === false){
+                player2.attack()
+                if(player1.position.x + player1.width >= player2.position.x + player2.width) {
+                    player2.switchSprite(`attack`)
+                } else {
+                    player2.switchSprite(`attack-inverted`)
+                }
+            }
+            keys.three.pressed = true
             break
     }
 })
@@ -576,16 +605,8 @@ window.addEventListener(`keyup`, (event) =>{
         case `ArrowLeft`:
             keys.ArrowLeft.pressed = false
             break
-        case `3`:
-            if(player2.canAttack && player2.canMove){
-                player2.attack()
-                if(player1.position.x + player1.width >= player2.position.x + player2.width) {
-                    player2.switchSprite(`attack`)
-                } else {
-                    player2.switchSprite(`attack-inverted`)
-                }
-            }
-            break
+        case '3':
+            keys.three.pressed = false
     }
 
 })
