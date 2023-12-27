@@ -8,7 +8,7 @@ context.fillRect(0,0,canvas.width,canvas.height)
 
 const gravity = resolucao==='1280x720'? 0.6: 0.35
 const jumpHeight = resolucao==='1280x720'? -14: -12
-const speed = resolucao==='1280x720'? 10: 7
+const speed = resolucao==='1280x720'? 10: 6
 
 const background = new SpriteScenery({
     position: {
