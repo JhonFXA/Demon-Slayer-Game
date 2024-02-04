@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demon Slayer Game</title>
-  <link rel="stylesheet" href="./src/css/menu.css">
-  <link rel="stylesheet" href="./src/css/fonts.css">
-  <link rel="stylesheet" href="./src/css/reset.css">
-  <link rel="stylesheet" href="./src/css/animations.css">
-  
+    <title>Demon Slayer</title>
+    <link rel="shortcut icon" href="./src/imagens/demonslayer-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./src/css/menu.css">
+    <link rel="stylesheet" href="./src/css/fonts.css">
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/animations.css">
 </head>
 <body>
+    <div id="loading-screen" class="loading-screen">
+            <img id="whoosh-fx" class="whoosh-fx"src="src/imagens/whoosh.png" alt="">
+        <div id="loading-content" class="loading-content">
+            <img id="chibiImg" src="" alt="">
+            <p>Now Loading</p>
+        </div>
+    </div>
     <div class="container">
         <div class="illustration">
             <img src="src/imagens/menu-illustration.png" aria-hidden="true"/>
@@ -33,6 +40,7 @@
         </nav>
     </div>
     
+    <script src="src/js/utils.js"></script>
     <script src="src/js/index.js"></script>
 </body>
 </html>

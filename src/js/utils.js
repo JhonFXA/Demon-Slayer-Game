@@ -1,3 +1,29 @@
+function changePage(choice){
+    if(choice == 'enter'){
+        setTimeout(() => {
+            loadingContent.style.display = 'none'
+        }, 3000)
+        setTimeout(() => {
+            loadingScreen.style.backgroundColor = 'transparent'
+            whooshFX.style.display = 'block'
+            loadingScreen.style.width = '0'
+        }, 4000)
+    }
+    else{
+        loadingScreen.style.left = 0
+        loadingScreen.style.width = '200%'
+        whooshFX.style.transform = 'scaleX(-1)'
+        setTimeout(() => {
+            loadingScreen.style.background = '#000'
+            whooshFX.style.display = 'none'
+            setTimeout(() => {
+                chibiImg.setAttribute('src', chibiChar[Math.floor(Math.random() * 4)])
+                loadingContent.style.display = 'block'
+            }, 2000);
+        }, 800);
+    }
+}
+
 function rectangularCollision ({rectangle1, rectangle2}) {
     return (
         rectangle1.attackBox.position.x + rectangle1.attackBox.width >= rectangle2.position.x && 
