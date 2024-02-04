@@ -6,41 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demon Slayer</title>
     <link rel="shortcut icon" href="./src/imagens/demonslayer-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./src/css/transition.css">
+    <link rel="stylesheet" href="./src/css/mobile.css">
     <link rel="stylesheet" href="./src/css/menu.css">
     <link rel="stylesheet" href="./src/css/fonts.css">
     <link rel="stylesheet" href="./src/css/reset.css">
     <link rel="stylesheet" href="./src/css/animations.css">
 </head>
 <body>
+<!-------------------------------- MOBILE WARNING ------------------------------>
+
+    <div class="mobile">
+        <div class="warning">
+            <h1>THIS GAME DOESN'T HAVE MOBILE SUPPORT!</h1>
+            <p>To play you need a keyboard and a friend to go against you. <span>:/</span></p>
+            <div class="inosuke-box">
+                <img class="speech" src="src/imagens/pixel-speech-bubble.gif" alt="">
+                <img class="inosuke" src="src/imagens/inosuke-beating.gif" alt="">
+            </div>
+        </div>
+    </div>
+
     <div id="loading-screen" class="loading-screen">
-            <img id="whoosh-fx" class="whoosh-fx"src="src/imagens/whoosh.png" alt="">
+            <img id="whoosh-fx" class="whoosh-fx"src="./src/imagens/whoosh.png" alt="">
         <div id="loading-content" class="loading-content">
             <img id="chibiImg" src="" alt="">
             <p>Now Loading</p>
         </div>
     </div>
+
+
     <div class="container">
         <div class="illustration">
             <img src="src/imagens/menu-illustration.png" aria-hidden="true"/>
         </div>
         <nav class="menu">
             <form>
-                <label for="resolucao">Resolução de tela</label>
+                <label for="resolucao">Screen resolution</label>
                 <select name="resolucao" id="resolucao">
                     <option value="1920x1080">1920 x 1080</option>
-                    <option value="1280x720">1280 x 720</option>
+                    <option value="1280x720">1280 x 720 (Notebook)</option>
                 </select>
             </form>
             <img class="logo" src="src/imagens/demonslayer-logo.png" alt="Demon Slayer">
             <ul class="button-list">
                 <li><button class="active" onclick="startGame()">Start Game</button></li>
-                <li><button class="inactive">Tutorial</button></li>
                 <li><button class="inactive">Options</button></li>
+                <li><button class="inactive">Tutorial</button></li>
+                <li><button class="inactive" onclick="openCredits()">Credits</button></li>
             </ul>
+            <div class="footer">
+                <p>©JhonFXA</p>
+                <p class="version">ALPHA</p>
+            </div>
         </nav>
     </div>
     
-    <script src="src/js/utils.js"></script>
+    <script src="src/js/transition.js"></script>
     <script src="src/js/index.js"></script>
 </body>
 </html>

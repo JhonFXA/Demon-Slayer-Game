@@ -42,6 +42,10 @@ const characters = [{
     status: 'blocked' 
 }]
 
+window.onload = function(){
+    changePage('fastin')
+}
+
 characters.forEach( character =>{
     const characterLists = document.querySelectorAll('.character-list')
     characterLists.forEach( characterList => {
@@ -133,6 +137,17 @@ startButton.addEventListener('click',()=>{
         localStorage.setItem('name-P1', characterNameP1.innerText)
         localStorage.setItem('name-P2', characterNameP2.innerText)
 
-        window.location.href = "../html/game.html"
+        changePage('out')
+        setTimeout(()=>{
+            window.location.href = "../html/game.html"
+        }, 6000)
     }
+})
+
+const backButton = document.getElementById("back-button")
+backButton.addEventListener('click', ()=>{
+    changePage('fastout')
+    setTimeout(()=>{
+        window.location.href = "../index.html"
+    }, 1000)
 })

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Select</title>
     <link rel="shortcut icon" href="../src/imagens/demonslayer-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../src/css/transition.css">
     <link rel="stylesheet" href="../src/css/variables.css">
     <link rel="stylesheet" href="../src/css/reset.css">
     <link rel="stylesheet" href="../src/css/fonts.css">
@@ -15,13 +16,18 @@
 </head>
 <body>
 
-   
-
+    <div id="loading-screen" class="loading-screen">
+        <img id="whoosh-fx" class="whoosh-fx"src="../src/imagens/whoosh.png" alt="">
+        <div id="loading-content" class="loading-content">
+            <img id="chibiImg" src="" alt="">
+            <p>Now Loading</p>
+        </div>
+    </div>
     <main>
          <header>
-             <a aria-label="Back button" class="back-button" href="../index.html">
+             <button aria-label="Back to menu" class="back-button" id="back-button">
                 <img src="../src/imagens/left-arrow.webp" alt="left arrow">
-             </a>
+             </button>
             <h1>
                 CharacteR SelecT
             </h1>
@@ -55,6 +61,7 @@
             </div>
     </main>
 
+    <script src="../src/js/transition.js"></script>
     <script src="../src/js/character-select.js"></script>
 </body>
 </html>

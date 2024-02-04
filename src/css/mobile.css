@@ -1,0 +1,63 @@
+@media only screen and (max-width: 700px) {
+    .container {
+        display: none;
+    }
+
+    .mobile {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(56, 52, 59);
+        background: url("https://i.pinimg.com/736x/59/13/dd/5913dd8d70f297b54c30cd153bf8f5c0.jpg");
+        background-size: cover;
+        color: #fff;
+        font-weight: bolder;
+        z-index: 1000;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .mobile .warning {
+        position: relative;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        height: 80%;
+        width: 90%;
+    }
+
+    .mobile h1 {
+        font-size: 30px;
+        margin-bottom: 80px;
+    }
+
+    .mobile p {
+        font-size: 20px;
+    }
+
+    .mobile span {
+        display: block;
+        font-size: 60px;
+    }
+
+    .inosuke-box {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    .inosuke {
+        height: 150px;
+        position: relative;
+        right: 50px;
+        top: 50px;
+    }
+
+    .speech {
+        height: 80px;
+    }
+}

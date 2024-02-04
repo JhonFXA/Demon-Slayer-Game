@@ -1,0 +1,35 @@
+.loading-screen {
+    position: fixed;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 999;
+    transition: width 0.8s;
+}
+
+.loading-screen .whoosh-fx {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.loading-content {
+    width: fit-content;
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+}
+
+.loading-content img {
+    height: 8em;
+}
+
+.loading-content p {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}

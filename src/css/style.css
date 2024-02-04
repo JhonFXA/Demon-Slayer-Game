@@ -20,6 +20,10 @@ main {
     justify-content: center;
 }
 
+.back-button{
+    cursor: pointer;
+}
+
 .back-button img {
     position: absolute;
     top: 10px;
@@ -247,4 +251,8 @@ section {
 
 .character-select .character-list .player-2-selected img {
     filter: saturate(100%);
+}
+
+.loading-content{
+    display: none;
 }
