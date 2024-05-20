@@ -21,7 +21,7 @@ I started developing this game after watching this video by **ChrisCourses** (<a
 ![image](https://github.com/JhonFXA/Demon-Slayer-Game/assets/101012380/9a70b0f9-56dc-40b8-859f-cad0f80378e5)
 ![image](https://github.com/JhonFXA/Demon-Slayer-Game/assets/101012380/74b7fc5a-e8b1-49db-bd29-d5cd813023c7)
 
-### CAUTION! THE GAME MAY SEEM SLOW ON NOTEBOOKS AND SMALLER SCREENS, TRY CHANGING THE SCREEN RESOLUTION IN THE MENU TO 1280 x 720!
+### CAUTION! THE GAME MAY SEEM SLOW ON NOTEBOOKS AND SMALLER SCREENS, TRY CHANGING THE MONITOR REFRESH RATE TO 60Hz or 120Hz!
 ***Player 1 Controls:***
 - WASD to move
 - Double-click A or D to Dash
