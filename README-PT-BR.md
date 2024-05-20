@@ -20,7 +20,7 @@ Eu comecei a desenvolver este jogo após ver esse vídeo do **ChrisCourses** (<a
 ![image](https://github.com/JhonFXA/Demon-Slayer-Game/assets/101012380/9a70b0f9-56dc-40b8-859f-cad0f80378e5)
 ![image](https://github.com/JhonFXA/Demon-Slayer-Game/assets/101012380/74b7fc5a-e8b1-49db-bd29-d5cd813023c7)
 
-### ATENÇÃO! O JOGO PODE PARECER LENTO PARA NOTEBOOKS E TELAS MENORES, TENTE MUDAR A RESOLUÇÃO DE TELA NO MENU PARA 1280 x 720!
+### ATENÇÃO! O JOGO PODE PARECER LENTO OU MUITO RÁPIDO, TENTE MUDAR A TAXA DE ATUALIZAÇÃO DO MONITOR PARA 60Hz OU 120Hz!
 ***Controles para o jogador 1:***
 - WASD para se movimentar
 - Clicar 2x rapidamente no A ou D para Dash
