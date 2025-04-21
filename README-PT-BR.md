@@ -29,7 +29,7 @@ Eu comecei a desenvolver este jogo após ver esse vídeo do **ChrisCourses** (<a
 ***Controles para o jogador 2:***
 - SETAS para se movimentar
 - Clicar 2x rapidamente na seta esquerda ou direita para Dash
-- Tecla PONTO para atacar
+- Tecla 3 para atacar
 
 ### 🛠 Tecnologias
 
