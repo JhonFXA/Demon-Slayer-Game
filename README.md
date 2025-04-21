@@ -30,7 +30,7 @@ I started developing this game after watching this video by **ChrisCourses** (<a
 ***Player 2 Controls:***
 - ARROWS to move
 - Double-click left or right arrow to Dash
-- DOT key to attack
+- '3' key to attack
 
 ### 🛠 Technologies
 
